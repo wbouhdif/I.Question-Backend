@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 @SpringBootApplication
 public class iQuestion extends Application {
@@ -19,6 +18,7 @@ public class iQuestion extends Application {
             Parent root = FXMLLoader.load(url);
             stage.setTitle("iQuestion");
             stage.setScene(new javafx.scene.Scene(root));
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
