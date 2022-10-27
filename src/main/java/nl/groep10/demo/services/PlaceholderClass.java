@@ -1,4 +1,4 @@
-package nl.groep10.demo.Views;
+package nl.groep10.demo.services;
 
 public class PlaceholderClass {
 }
