@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="500.0" prefHeight="780.0" prefWidth="400.0" spacing="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registeren" textAlignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+            <VBox prefHeight="40.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Voornaam" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="40.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Achternaam" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="40.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail adres" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="40.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wachtwoord" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="40.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Herhaal wachtwoord" />
+                  <TextField />
+               </children>
+            </VBox>
+            <VBox prefHeight="40.0" prefWidth="400.0" spacing="5.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type gebruiker" />
+                  <ChoiceBox prefWidth="400.0" />
+               </children>
+            </VBox>
+            <Button mnemonicParsing="false" text="Registreren" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
