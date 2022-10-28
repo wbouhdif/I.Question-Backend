@@ -26,29 +26,29 @@
             </Text>
             <HBox alignment="BOTTOM_CENTER" prefHeight="42.0" prefWidth="182.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Vraag aanmaken" />
+                  <Button fx:id="btnCreateQuestion" mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Vraag aanmaken" />
                   <VBox prefHeight="42.0" prefWidth="285.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vraag zoeken" />
-                        <TextField />
+                        <TextField fx:id="fieldSearchQuestion" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <ScrollPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" />
+            <ScrollPane fx:id="sPaneQuestionList" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" />
          </children>
          <padding>
             <Insets bottom="30.0" top="30.0" />
          </padding>
       </VBox>
-      <ScrollPane layoutX="37.0" layoutY="145.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" />
-      <Button layoutX="725.0" layoutY="103.0" mnemonicParsing="false" text="Vragenlijst opslaan" />
-      <Button layoutX="863.0" layoutY="102.0" mnemonicParsing="false" text="Annuleren" />
-      <Text layoutX="39.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="vragenlijst1" textAlignment="CENTER">
+      <ScrollPane fx:id="sPaneQuestionnaireList" layoutX="37.0" layoutY="145.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" />
+      <Button fx:id="btnSaveQuestionnaire" layoutX="725.0" layoutY="103.0" mnemonicParsing="false" text="Vragenlijst opslaan" />
+      <Button fx:id="btnCancel" layoutX="863.0" layoutY="102.0" mnemonicParsing="false" text="Annuleren" />
+      <Text fx:id="txtQuestionnaireNumber" layoutX="39.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="vragenlijst1" textAlignment="CENTER">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Button layoutX="611.0" layoutY="104.0" mnemonicParsing="false" text="Naam wijzigen" />
+      <Button fx:id="btnChangeName" layoutX="611.0" layoutY="104.0" mnemonicParsing="false" text="Naam wijzigen" />
    </children>
 </AnchorPane>
