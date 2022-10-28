@@ -8,7 +8,14 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class SceneController {
-    public static void switchScene(String fxmlFile) {
+    private static SceneController instance;
+    public static SceneController getInstance() {
+        if (instance == null) {
+            instance = new SceneController();
+        }
+        return instance;
+    }
+    public void switchScene(String fxmlFile) {
         Stage stage = (Stage) javafx.stage.Window.getWindows().get(0);
 
         try {
