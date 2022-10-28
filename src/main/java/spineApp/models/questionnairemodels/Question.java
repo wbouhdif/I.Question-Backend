@@ -4,6 +4,6 @@ public abstract class Question {
     Integer ID;
     String type;
     String question;
-    String answer;
+    String givenAnswer;
     Boolean isSkippable;
 }
