@@ -1,4 +1,4 @@
-package spineApp.backend.services;
+package spineapp.backend.services;
 
 public class SupabaseService {
 
