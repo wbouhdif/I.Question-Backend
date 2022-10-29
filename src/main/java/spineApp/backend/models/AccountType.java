@@ -30,4 +30,20 @@ public class AccountType {
     @Column(name = "can_view_personalised_data")
     private Boolean canViewPersonalisedData;
 
+    public AccountType() {}
+
+    public AccountType(String name,
+                       Boolean canManageQuestionnaires,
+                       Boolean canFillQuestionnaires,
+                       Boolean canAuthoriseAccounts,
+                       Boolean canViewAnonymousData,
+                       Boolean canViewPersonalisedData) {
+        this.name = name;
+        this.canManageQuestionnaires = canManageQuestionnaires;
+        this.canFillQuestionnaires = canFillQuestionnaires;
+        this.canAuthoriseAccounts = canAuthoriseAccounts;
+        this.canViewAnonymousData = canViewAnonymousData;
+        this.canViewPersonalisedData = canViewPersonalisedData;
+    }
+
 }

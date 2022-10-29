@@ -21,4 +21,12 @@ public class Question {
     @Column
     private Boolean mandatory;
 
+    public Question() {}
+
+    public Question(String type, String text, Boolean mandatory) {
+        this.type = type;
+        this.text = text;
+        this.mandatory = mandatory;
+    }
+
 }

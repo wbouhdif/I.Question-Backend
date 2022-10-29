@@ -19,4 +19,11 @@ public class Questionnaire {
     @JoinColumn(referencedColumnName = "id")
     private Account account;
 
+    public Questionnaire() {}
+
+    public Questionnaire(String name, Account account) {
+        this.name = name;
+        this.account = account;
+    }
+
 }

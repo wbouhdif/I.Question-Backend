@@ -23,4 +23,12 @@ public class AnsweredQuestionnaire {
     @Column(name = "client_name")
     private String clientName;
 
+    public AnsweredQuestionnaire() {}
+
+    public AnsweredQuestionnaire(Account caregiver, Questionnaire questionnaire, String clientName) {
+        this.caregiver = caregiver;
+        this.questionnaire = questionnaire;
+        this.clientName = clientName;
+    }
+
 }

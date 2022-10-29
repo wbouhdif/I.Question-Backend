@@ -19,4 +19,11 @@ public class Answer {
     @JoinColumn(name = "answered_questionnaire", referencedColumnName = "id")
     private AnsweredQuestionnaire answeredQuestionnaire;
 
+    public Answer() {}
+
+    public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire) {
+        this.text = text;
+        this.answeredQuestionnaire = answeredQuestionnaire;
+    }
+
 }

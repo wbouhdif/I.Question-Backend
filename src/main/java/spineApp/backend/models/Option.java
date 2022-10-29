@@ -19,4 +19,11 @@ public class Option {
     @JoinColumn(referencedColumnName = "id")
     private Question question;
 
+    public Option() {}
+
+    public Option(String text, Question question) {
+        this.text = text;
+        this.question = question;
+    }
+
 }

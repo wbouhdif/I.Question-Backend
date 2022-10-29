@@ -28,10 +28,22 @@ public class Account {
     private String middleName;
 
     @Column(name = "is_validated")
-    private String isValidated;
+    private Boolean isValidated;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private AccountType type;
+
+    public Account() {}
+
+    public Account(String email, String password, String firstName, String lastName, String middleName, Boolean isValidated, AccountType type) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.isValidated = isValidated;
+        this.type = type;
+    }
 
 }

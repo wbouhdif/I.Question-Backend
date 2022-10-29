@@ -23,4 +23,12 @@ public class EmployedQuestion {
     @Column
     private int position;
 
+    public EmployedQuestion() {}
+
+    public EmployedQuestion(Question question, Questionnaire questionnaire, int position) {
+        this.question = question;
+        this.questionnaire = questionnaire;
+        this.position = position;
+    }
+
 }
