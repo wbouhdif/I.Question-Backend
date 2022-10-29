@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "\"account_types\"")
+@Table(name = "\"account_type\"")
 
 public class AccountType {
 
