@@ -13,11 +13,11 @@ public class AnsweredQuestionnaire {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "caregiver", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Account caregiver;
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Questionnaire questionnaire;
 
     @Column(name = "client_name")

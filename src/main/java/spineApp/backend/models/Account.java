@@ -12,10 +12,10 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "email")
+    @Column
     private String email;
 
-    @Column(name = "password")
+    @Column
     private String password;
 
     @Column(name = "first_name")
@@ -31,7 +31,7 @@ public class Account {
     private String isValidated;
 
     @ManyToOne
-    @JoinColumn(name = "type", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private AccountType type;
 
 }

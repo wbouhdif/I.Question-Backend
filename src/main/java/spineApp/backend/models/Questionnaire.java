@@ -12,11 +12,11 @@ public class Questionnaire {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "account", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Account account;
 
 }

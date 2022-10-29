@@ -12,7 +12,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "text")
+    @Column
     private String text;
 
     @ManyToOne

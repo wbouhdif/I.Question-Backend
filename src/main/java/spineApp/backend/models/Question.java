@@ -12,13 +12,13 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "type")
+    @Column
     private String type;
 
-    @Column(name = "text")
+    @Column
     private String text;
 
-    @Column(name = "mandatory")
+    @Column
     private Boolean mandatory;
 
 }

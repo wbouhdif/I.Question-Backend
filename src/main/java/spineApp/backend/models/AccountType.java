@@ -12,7 +12,7 @@ public class AccountType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
     @Column(name = "can_manage_questionnaires")

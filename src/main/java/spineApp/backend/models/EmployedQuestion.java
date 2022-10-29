@@ -13,14 +13,14 @@ public class EmployedQuestion {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "question", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Question question;
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Questionnaire questionnaire;
 
-    @Column(name = "position")
+    @Column
     private int position;
 
 }

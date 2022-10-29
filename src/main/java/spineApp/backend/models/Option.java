@@ -12,11 +12,11 @@ public class Option {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "text")
+    @Column
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "question", referencedColumnName = "id")
+    @JoinColumn(referencedColumnName = "id")
     private Question question;
 
 }
