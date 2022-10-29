@@ -16,7 +16,7 @@ public class Questionnaire {
     private String name;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "account", referencedColumnName = "id")
     private Account account;
 
     public Questionnaire() {}

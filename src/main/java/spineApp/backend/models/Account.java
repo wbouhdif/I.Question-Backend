@@ -31,7 +31,7 @@ public class Account {
     private Boolean isValidated;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "type", referencedColumnName = "id")
     private AccountType type;
 
     public Account() {}

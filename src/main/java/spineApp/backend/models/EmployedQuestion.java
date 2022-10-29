@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "\"account\"")
+@Table(name = "\"employed_question\"")
 
 public class EmployedQuestion {
 
@@ -13,11 +13,11 @@ public class EmployedQuestion {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "question", referencedColumnName = "id")
     private Question question;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "questionnaire", referencedColumnName = "id")
     private Questionnaire questionnaire;
 
     @Column

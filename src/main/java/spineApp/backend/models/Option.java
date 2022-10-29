@@ -16,7 +16,7 @@ public class Option {
     private String text;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "question", referencedColumnName = "id")
     private Question question;
 
     public Option() {}
