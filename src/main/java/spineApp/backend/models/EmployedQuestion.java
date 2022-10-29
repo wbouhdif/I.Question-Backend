@@ -1,4 +1,4 @@
 package spineApp.backend.models;
 
-public class Catalogue {
+public class EmployedQuestion {
 }

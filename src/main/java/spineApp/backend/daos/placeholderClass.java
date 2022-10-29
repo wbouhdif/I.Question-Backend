@@ -1,4 +1,4 @@
-package spineApp.backend.dao;
+package spineApp.backend.daos;
 
 public class placeholderClass {
 }
