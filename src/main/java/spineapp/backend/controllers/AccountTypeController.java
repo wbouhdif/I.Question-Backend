@@ -1,8 +1,8 @@
-package spineapp.backend.controllers;
+package spineApp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import spineapp.backend.daos.AccountTypeDAO;
+import spineApp.backend.daos.AccountTypeDAO;
 
 @RestController
 public class AccountTypeController {
