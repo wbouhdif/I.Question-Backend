@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spineApp.backend.models.AccountType;
 
-import java.util.List;
-
 @Component
 public class AccountTypeDAO {
 
@@ -16,11 +14,7 @@ public class AccountTypeDAO {
         this.accountTypeRepository = accountTypeRepository;
     }
 
-    public AccountType createAccountType(AccountType accountType) {
-        return accountTypeRepository.save(accountType);
-    }
-
-    public List<AccountType> getAccountTypes() {
-        return accountTypeRepository.findAll();
+    public void createAccountType(AccountType accountType) {
+        accountTypeRepository.save(accountType);
     }
 }
