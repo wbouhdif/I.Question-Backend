@@ -1,13 +1,13 @@
-package spineapp.backend;
+package spineApp.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import spineapp.backend.constants.AccountTypeConstants;
-import spineapp.backend.daos.AccountTypeDAO;
-import spineapp.backend.daos.AccountTypeRepository;
+import spineApp.backend.constants.AccountTypeConstants;
+import spineApp.backend.daos.AccountTypeDAO;
+import spineApp.backend.daos.AccountTypeRepository;
 
 
 @SpringBootApplication
@@ -29,9 +29,9 @@ public class Application {
     @EventListener(ApplicationReadyEvent.class)
     public void createAccountTypes() {
         if (accountTypeRepository.findAll().isEmpty()) {
-            accountTypeDao.createAccountType(AccountTypeConstants.ADMIN);
-            accountTypeDao.createAccountType(AccountTypeConstants.CAREGIVER);
-            accountTypeDao.createAccountType(AccountTypeConstants.SPINE);
+            accountTypeDao.registerAccountType(AccountTypeConstants.ADMIN);
+            accountTypeDao.registerAccountType(AccountTypeConstants.CAREGIVER);
+            accountTypeDao.registerAccountType(AccountTypeConstants.SPINE);
 
         }
     }

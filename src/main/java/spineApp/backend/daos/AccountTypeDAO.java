@@ -1,8 +1,9 @@
-package spineapp.backend.daos;
+package spineApp.backend.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spineapp.backend.models.AccountType;
+import spineApp.backend.daos.AccountTypeRepository;
+import spineApp.backend.models.AccountType;
 
 @Component
 public class AccountTypeDAO {
@@ -14,7 +15,7 @@ public class AccountTypeDAO {
         this.accountTypeRepository = accountTypeRepository;
     }
 
-    public void createAccountType(AccountType accountType) {
+    public void registerAccountType(AccountType accountType) {
         accountTypeRepository.save(accountType);
     }
 }
