@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import spineapp.backend.daos.AccountTypeDAO;
 import org.springframework.web.bind.annotation.*;
-import spineApp.backend.daos.AccountTypeDAO;
-import spineApp.backend.models.AccountType;
+import spineapp.backend.models.AccountType;
 
 import java.util.List;
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import spineapp.backend.models.Account;
 import spineapp.backend.models.AccountType;
 
-
 import java.util.Optional;
 import java.util.UUID;
 

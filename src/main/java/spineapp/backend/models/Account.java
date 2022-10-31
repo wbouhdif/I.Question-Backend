@@ -19,31 +19,28 @@ public class Account {
     private String password;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String first_name;
 
     @Column(name = "last_name")
-    private String lastName;
+    private String last_name;
 
     @Column(name = "middle_name")
-    private String middleName;
+    private String middle_name;
 
     @Column(name = "is_validated")
-    private Boolean isValidated;
+    private Boolean is_validated;
 
-    @ManyToOne
-    @JoinColumn(name = "type", referencedColumnName = "id")
-    private AccountType type;
+
 
     public Account() {}
 
-    public Account(String email, String password, String firstName, String lastName, String middleName, Boolean isValidated, AccountType type) {
+    public Account(String email, String password, String first_name, String last_name, String middle_name, Boolean is_validated) {
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.isValidated = isValidated;
-        this.type = type;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.middle_name = middle_name;
+        this.is_validated = is_validated;
     }
 
     public UUID getId() {
@@ -70,43 +67,35 @@ public class Account {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getMiddle_name() {
+        return middle_name;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+    public void setMiddle_name(String middle_name) {
+        this.middle_name = middle_name;
     }
 
-    public Boolean getValidated() {
-        return isValidated;
+    public Boolean getIs_validated() {
+        return is_validated;
     }
 
-    public void setValidated(Boolean validated) {
-        isValidated = validated;
-    }
-
-    public AccountType getType() {
-        return type;
-    }
-
-    public void setType(AccountType type) {
-        this.type = type;
+    public void setIs_validated(Boolean is_validated) {
+        this.is_validated = is_validated;
     }
 }
