@@ -1,8 +1,8 @@
-package spineApp.backend.daos;
+package spineapp.backend.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import spineApp.backend.models.AccountType;
+import spineapp.backend.models.AccountType;
 
 @Component
 public class AccountTypeDAO {

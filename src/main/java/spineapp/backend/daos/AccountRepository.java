@@ -1,9 +1,9 @@
-package spineApp.backend.daos;
+package spineapp.backend.daos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import spineApp.backend.models.Account;
+import spineapp.backend.models.Account;
 
 import java.util.Optional;
 import java.util.UUID;

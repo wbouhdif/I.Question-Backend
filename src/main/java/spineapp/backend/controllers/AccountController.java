@@ -1,9 +1,9 @@
-package spineApp.backend.controllers;
+package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import spineApp.backend.daos.AccountDAO;
-import spineApp.backend.models.Account;
+import spineapp.backend.daos.AccountDAO;
+import spineapp.backend.models.Account;
 
 import java.util.List;
 import java.util.UUID;
