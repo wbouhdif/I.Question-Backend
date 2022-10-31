@@ -46,4 +46,8 @@ public class AccountType {
         this.canViewPersonalisedData = canViewPersonalisedData;
     }
 
+    public String getName() {
+        return name;
+    }
+
 }
