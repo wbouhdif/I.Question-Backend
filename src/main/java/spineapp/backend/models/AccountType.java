@@ -46,8 +46,59 @@ public class AccountType {
         this.canViewPersonalisedData = canViewPersonalisedData;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Boolean getCanManageQuestionnaires() {
+        return canManageQuestionnaires;
+    }
+
+    public void setCanManageQuestionnaires(Boolean canManageQuestionnaires) {
+        this.canManageQuestionnaires = canManageQuestionnaires;
+    }
+
+    public Boolean getCanFillQuestionnaires() {
+        return canFillQuestionnaires;
+    }
+
+    public void setCanFillQuestionnaires(Boolean canFillQuestionnaires) {
+        this.canFillQuestionnaires = canFillQuestionnaires;
+    }
+
+    public Boolean getCanAuthoriseAccounts() {
+        return canAuthoriseAccounts;
+    }
+
+    public void setCanAuthoriseAccounts(Boolean canAuthoriseAccounts) {
+        this.canAuthoriseAccounts = canAuthoriseAccounts;
+    }
+
+    public Boolean getCanViewAnonymousData() {
+        return canViewAnonymousData;
+    }
+
+    public void setCanViewAnonymousData(Boolean canViewAnonymousData) {
+        this.canViewAnonymousData = canViewAnonymousData;
+    }
+
+    public Boolean getCanViewPersonalisedData() {
+        return canViewPersonalisedData;
+    }
+
+    public void setCanViewPersonalisedData(Boolean canViewPersonalisedData) {
+        this.canViewPersonalisedData = canViewPersonalisedData;
+    }
 }
