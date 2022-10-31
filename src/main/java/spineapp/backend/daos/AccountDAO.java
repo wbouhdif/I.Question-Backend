@@ -3,7 +3,6 @@ package spineApp.backend.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import spineApp.backend.models.Account;
 
 import java.util.List;

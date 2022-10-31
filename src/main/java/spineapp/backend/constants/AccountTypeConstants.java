@@ -1,6 +1,5 @@
 package spineApp.backend.constants;
 
-
 import spineApp.backend.models.AccountType;
 
 public class AccountTypeConstants {
