@@ -29,10 +29,9 @@ public class Application {
     @EventListener(ApplicationReadyEvent.class)
     public void createAccountTypes() {
         if (accountTypeRepository.findAll().isEmpty()) {
-
-            accountTypeDao.createAccountType(AccountTypeConstants.ADMIN);
-            accountTypeDao.createAccountType(AccountTypeConstants.CAREGIVER);
-            accountTypeDao.createAccountType(AccountTypeConstants.SPINE);
+            accountTypeDao.registerAccountType(AccountTypeConstants.ADMIN);
+            accountTypeDao.registerAccountType(AccountTypeConstants.CAREGIVER);
+            accountTypeDao.registerAccountType(AccountTypeConstants.SPINE);
 
         }
     }
