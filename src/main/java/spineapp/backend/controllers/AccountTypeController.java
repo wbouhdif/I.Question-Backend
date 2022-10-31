@@ -6,5 +6,11 @@ import spineApp.backend.daos.AccountTypeDAO;
 
 @RestController
 public class AccountTypeController {
-    @Autowired private AccountTypeDAO accountTypeDAO;
+    @Autowired
+    private final AccountTypeDAO accountTypeDAO;
+
+    public AccountTypeController(AccountTypeDAO accountTypeDAO) {
+        this.accountTypeDAO = accountTypeDAO;
+    }
+
 }

@@ -5,10 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import spineApp.backend.constants.AccountTypeConstants;
 import spineApp.backend.daos.AccountTypeDAO;
 import spineApp.backend.daos.AccountTypeRepository;
-import spineapp.backend.constants.AccountTypeConstants;
-
 
 
 @SpringBootApplication

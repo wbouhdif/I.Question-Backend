@@ -1,4 +1,4 @@
-package spineapp.backend.models;
+package spineApp.backend.models;
 
 import javax.persistence.*;
 import java.util.UUID;
