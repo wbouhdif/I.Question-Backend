@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuestionDAO {
 
-    private final QuestionDAO questionDAO;
+    private final QuestionRepository questionRepository;
 
     @Autowired
-    public QuestionDAO(QuestionDAO questionDAO) {
-        this.questionDAO = questionDAO;
+    public QuestionDAO(QuestionRepository questionRepository) {
+        this.questionRepository = questionRepository;
     }
 
 }
