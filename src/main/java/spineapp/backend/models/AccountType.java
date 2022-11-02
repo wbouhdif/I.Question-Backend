@@ -1,6 +1,13 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import org.springframework.data.annotation.Persistent;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -29,6 +36,10 @@ public class AccountType {
 
     @Column(name = "can_view_personalised_data")
     private Boolean canViewPersonalisedData;
+
+    @OneToMany
+    @JoinColumn(name = "type")
+    private Set<Account> accounts = new HashSet<>();
 
     public AccountType() {}
 
