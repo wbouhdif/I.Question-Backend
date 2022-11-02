@@ -41,4 +41,9 @@ public class AccountTypeDAO {
         }
         accountTypeRepository.deleteById(id);
     }
+
+    public boolean existsById(UUID id) {
+        return accountTypeRepository.existsById(id);
+    }
+
 }
