@@ -12,11 +12,10 @@ import spineapp.backend.daos.AccountTypeRepository;
 
 @SpringBootApplication
 public class Application {
-    @Autowired
     private final AccountTypeRepository accountTypeRepository;
-    @Autowired
     private final AccountTypeDAO accountTypeDao;
 
+    @Autowired
     public Application(AccountTypeRepository accountTypeRepository, AccountTypeDAO accountTypeDao) {
         this.accountTypeRepository = accountTypeRepository;
         this.accountTypeDao = accountTypeDao;
@@ -29,6 +28,7 @@ public class Application {
     @EventListener(ApplicationReadyEvent.class)
     public void createAccountTypes() {
         if (accountTypeRepository.findAll().isEmpty()) {
+
             accountTypeDao.createAccountType(AccountTypeConstants.ADMIN);
             accountTypeDao.createAccountType(AccountTypeConstants.CAREGIVER);
             accountTypeDao.createAccountType(AccountTypeConstants.SPINE);
