@@ -1,6 +1,8 @@
 package spineapp.backend.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -33,6 +35,14 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "type", referencedColumnName = "id")
     private AccountType type;
+
+    @OneToMany
+    @JoinColumn(name = "caregiver")
+    private Set<AnsweredQuestionnaire> answeredQuestionnaires = new HashSet<>();
+
+    @OneToMany
+    @JoinColumn(name = "account")
+    private Set<Questionnaire> questionnaires = new HashSet<>();
 
     public Account() {}
 

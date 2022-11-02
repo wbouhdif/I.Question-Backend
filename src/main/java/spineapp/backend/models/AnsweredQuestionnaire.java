@@ -1,6 +1,8 @@
 package spineapp.backend.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +24,10 @@ public class AnsweredQuestionnaire {
 
     @Column(name = "client_name")
     private String clientName;
+
+    @OneToMany
+    @JoinColumn(name = "answered_questionnaire")
+    private Set<Answer> answers = new HashSet<>();
 
     public AnsweredQuestionnaire() {}
 
