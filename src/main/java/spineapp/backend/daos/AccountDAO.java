@@ -2,7 +2,6 @@ package spineapp.backend.daos;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import spineapp.backend.models.Account;
 
@@ -22,13 +21,6 @@ public class AccountDAO {
     }
 
     public void registerNewAccount(Account account) {
-        Optional<Account> accountByEmail = accountRepository.findAccountByEmail(account.getEmail());
-        if (accountByEmail.isPresent()) {
-            throw new IllegalStateException("Email taken");
-        }
-        if (!accountTypeDAO.existsById(account.getType().getId())) {
-            throw new IllegalStateException("Account type with id " + account.getType().getId() + " does not exist");
-        }
         accountRepository.save(account);
     }
     public List<Account> getAccounts() {
@@ -37,10 +29,14 @@ public class AccountDAO {
 
 
     public void deleteAccount(UUID id) {
-        boolean exists = accountRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("Account with id " + id + " does not exist");
-        }
         accountRepository.deleteById(id);
+    }
+
+    public Optional<Account> findAccountByEmail(String email) {
+        return accountRepository.findAccountByEmail(email);
+    }
+
+    public boolean existsById(UUID id) {
+        return accountRepository.existsById(id);
     }
 }
