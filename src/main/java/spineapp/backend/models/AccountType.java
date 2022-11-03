@@ -1,11 +1,8 @@
 package spineapp.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
-import org.springframework.data.annotation.Persistent;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -13,8 +10,8 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Getter
 @Setter
+@Getter
 @Table(name = "\"account_type\"")
 
 public class AccountType {
@@ -43,6 +40,7 @@ public class AccountType {
 
     @OneToMany
     @JoinColumn(name = "type")
+    @JsonBackReference
     private Set<Account> accounts = new HashSet<>();
 
     public AccountType() {}
@@ -60,4 +58,5 @@ public class AccountType {
         this.canViewAnonymousData = canViewAnonymousData;
         this.canViewPersonalisedData = canViewPersonalisedData;
     }
+
 }

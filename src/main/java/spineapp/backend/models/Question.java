@@ -1,5 +1,6 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,10 +31,12 @@ public class Question {
 
     @OneToMany
     @JoinColumn(name = "question")
+    @JsonBackReference
     private Set<EmployedQuestion> employedQuestions = new HashSet<>();
 
     @OneToMany
     @JoinColumn(name = "question")
+    @JsonBackReference
     private Set<Option> options = new HashSet<>();
 
     public Question() {}

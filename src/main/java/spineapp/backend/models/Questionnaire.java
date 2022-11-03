@@ -1,5 +1,7 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,14 +26,17 @@ public class Questionnaire {
 
     @ManyToOne
     @JoinColumn(name = "account", referencedColumnName = "id")
+    @JsonManagedReference
     private Account account;
 
     @OneToMany
     @JoinColumn(name = "questionnaire")
+    @JsonBackReference
     private Set<AnsweredQuestionnaire> answeredQuestionnaires = new HashSet<>();
 
     @OneToMany
     @JoinColumn(name = "questionnaire")
+    @JsonBackReference
     private Set<EmployedQuestion> employedQuestions = new HashSet<>();
 
     public Questionnaire() {}
