@@ -25,6 +25,10 @@ public class AccountDAO {
         return accountRepository.findAll();
     }
 
+    public Optional<Account> getAccountById(UUID id) {
+        return accountRepository.findById(id);
+    }
+
 
     public void deleteAccount(UUID id) {
         accountRepository.deleteById(id);
