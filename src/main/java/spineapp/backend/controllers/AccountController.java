@@ -12,6 +12,7 @@ import spineapp.backend.models.Account;
 import spineapp.backend.services.EmailValidationService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -28,9 +29,14 @@ public class AccountController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping(path = "/accounts")
+    @GetMapping
     public List<Account> getAccounts() {
         return accountDAO.getAccounts();
+    }
+
+    @GetMapping (path = "{accountId}")
+    public Optional<Account> getAccount(@PathVariable("accountId") UUID id) {
+        return accountDAO.getAccountById(id);
     }
 
     @PostMapping(path = "/register")
