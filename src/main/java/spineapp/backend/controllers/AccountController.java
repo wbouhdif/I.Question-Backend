@@ -5,9 +5,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.AccountDAO;
 import spineapp.backend.daos.AccountTypeDAO;
+import spineapp.backend.exceptions.EmailInvalidException;
 import spineapp.backend.exceptions.EmailTakenException;
 import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Account;
+import spineapp.backend.services.EmailValidationService;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +34,9 @@ public class AccountController {
     }
 
     @PostMapping
-    public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException {
+    public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException, EmailInvalidException {
+
+        EmailValidationService.validateEmailAddress(account.getEmail());
 
         if (accountDAO.findAccountByEmail(account.getEmail()).isPresent()) {
             throw new EmailTakenException();
