@@ -54,7 +54,7 @@ public class AccountController {
 
     @DeleteMapping(path = "{accountId}")
     public void deleteAccount(@PathVariable("accountId") UUID id) throws EntityNotFoundException {
-        if (accountDAO.existsById(id)) {
+        if (!accountDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
 
