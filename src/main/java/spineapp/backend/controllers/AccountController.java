@@ -28,12 +28,12 @@ public class AccountController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping
+    @GetMapping(path = "/accounts")
     public List<Account> getAccounts() {
         return accountDAO.getAccounts();
     }
 
-    @PostMapping
+    @PostMapping(path = "/register")
     public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException, EmailInvalidException {
 
         EmailValidationService.validateEmailAddress(account.getEmail());
