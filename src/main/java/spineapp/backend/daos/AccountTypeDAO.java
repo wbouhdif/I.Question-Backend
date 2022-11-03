@@ -27,18 +27,10 @@ public class AccountTypeDAO {
     }
 
     public Optional<AccountType> getAccountTypeById(UUID id) {
-        boolean exists = accountTypeRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("Account type with id " + id + " does not exist");
-        }
         return accountTypeRepository.findById(id);
     }
 
     public void deleteAccountType(UUID id) {
-        boolean exists = accountTypeRepository.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("Account type with id " + id + " does not exist");
-        }
         accountTypeRepository.deleteById(id);
     }
 

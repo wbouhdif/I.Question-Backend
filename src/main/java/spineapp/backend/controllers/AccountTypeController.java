@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import spineapp.backend.daos.AccountTypeDAO;
 import org.springframework.web.bind.annotation.*;
+import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.AccountType;
 
 import java.util.List;
@@ -37,7 +38,10 @@ public class AccountTypeController {
     }
 
     @DeleteMapping(path = "{account_typeId}")
-    public void deleteAccountType(@PathVariable("account_typeId") UUID id) {
+    public void deleteAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
+        if (!accountTypeDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
         accountTypeDAO.deleteAccountType(id);
     }
 }
