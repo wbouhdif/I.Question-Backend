@@ -21,16 +21,6 @@ public class AccountDAO {
         this.accountTypeDAO = accountTypeDAO;
     }
 
-    public void registerNewAccount(Account account) {
-        Optional<Account> accountByEmail = accountRepository.findAccountByEmail(account.getEmail());
-        if (accountByEmail.isPresent()) {
-            throw new IllegalStateException("Email taken");
-        }
-        if (!accountTypeDAO.existsById(account.getType().getId())) {
-            throw new IllegalStateException("Account type with id " + account.getType().getId() + " does not exist");
-        }
-        accountRepository.save(account);
-    }
     public List<Account> getAccounts() {
         return accountRepository.findAll();
     }

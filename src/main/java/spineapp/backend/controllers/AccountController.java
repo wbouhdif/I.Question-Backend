@@ -26,14 +26,7 @@ public class AccountController {
         return accountDAO.getAccounts();
     }
 
-    @PostMapping
-    public void registerNewAccount(@RequestBody Account account) {
 
-        String encodedPassword = passwordEncoder.encode(account.getPassword());
-        account.setPassword(encodedPassword);
-
-        accountDAO.registerNewAccount(account);
-    }
 
     @DeleteMapping(path = "{accountId}")
     public void deleteAccount(@PathVariable("accountId") UUID id) {
