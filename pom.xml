@@ -65,6 +65,12 @@
 			<artifactId>spring-security-core</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>dnsjava</groupId>
+			<artifactId>dnsjava</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
