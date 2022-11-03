@@ -1,5 +1,7 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +20,7 @@ public class Account {
     private String email;
 
     @Column
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "first_name")
