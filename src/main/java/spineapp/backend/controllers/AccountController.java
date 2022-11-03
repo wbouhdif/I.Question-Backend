@@ -1,6 +1,7 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.AccountDAO;
 import spineapp.backend.models.Account;
@@ -12,10 +13,12 @@ import java.util.UUID;
 @RequestMapping(path = "api/account")
 public class AccountController {
     private final AccountDAO accountDAO;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AccountController(AccountDAO accountDAO) {
+    public AccountController(AccountDAO accountDAO, PasswordEncoder passwordEncoder) {
         this.accountDAO = accountDAO;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -25,6 +28,10 @@ public class AccountController {
 
     @PostMapping
     public void registerNewAccount(@RequestBody Account account) {
+
+        String encodedPassword = passwordEncoder.encode(account.getPassword());
+        account.setPassword(encodedPassword);
+
         accountDAO.registerNewAccount(account);
     }
 
