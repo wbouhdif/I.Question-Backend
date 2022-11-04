@@ -26,8 +26,16 @@ public class Answer {
     @JsonManagedReference
     private AnsweredQuestionnaire answeredQuestionnaire;
 
+    /**
+     * Empty constructor for Answer without parameters. These can be defined after creation.
+     */
     public Answer() {}
 
+    /**
+     * Constructor for Answer
+     * @param text Text for the answer
+     * @param answeredQuestionnaire The answered questionnaire the answer belongs to
+     */
     public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire) {
         this.text = text;
         this.answeredQuestionnaire = answeredQuestionnaire;
