@@ -22,6 +22,16 @@ public class JWTFilter extends OncePerRequestFilter {
     private LoggedInUserDetailsService loggedInUserDetailsService;
     @Autowired private JWTUtil jwtUtil;
 
+    /**
+     *
+     * @param request An http request
+     * @param response An http response
+     * @param filterChain object which provides a look into invocation chain of the filtered request
+     * @throws ServletException
+     * Throws an exception in case the JWT token is invalid
+     * @throws IOException
+     * Throws an exception if an I/O operation fails or is interrupted.
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
