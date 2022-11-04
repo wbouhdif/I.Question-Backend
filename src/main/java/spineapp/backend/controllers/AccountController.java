@@ -29,6 +29,10 @@ public class AccountController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    /**
+     * doc
+     * @return
+     */
     @GetMapping
     public List<Account> getAccounts() {
         return accountDAO.getAccounts();
