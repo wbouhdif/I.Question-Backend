@@ -1,6 +1,7 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.AccountDAO;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "api/account")
+@RequestMapping(path = "api/account", consumes = MediaType.APPLICATION_JSON_VALUE, produces =  MediaType.APPLICATION_JSON_VALUE)
 public class AccountController {
     private final AccountDAO accountDAO;
     private final AccountTypeDAO accountTypeDAO;
@@ -39,7 +40,7 @@ public class AccountController {
         return accountDAO.getAccountById(id);
     }
 
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException, EmailInvalidException {
 
         EmailValidationService.validateEmailAddress(account.getEmail());

@@ -1,13 +1,9 @@
 package spineapp.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -23,21 +19,14 @@ public class AnsweredQuestionnaire {
 
     @ManyToOne
     @JoinColumn(name = "caregiver", referencedColumnName = "id")
-    @JsonManagedReference
     private Account caregiver;
 
     @ManyToOne
     @JoinColumn(name = "questionnaire", referencedColumnName = "id")
-    @JsonManagedReference
     private Questionnaire questionnaire;
 
     @Column(name = "client_name")
     private String clientName;
-
-    @OneToMany
-    @JoinColumn(name = "answered_questionnaire")
-    @JsonBackReference
-    private Set<Answer> answers = new HashSet<>();
 
     public AnsweredQuestionnaire() {}
 

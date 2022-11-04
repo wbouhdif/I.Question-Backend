@@ -1,12 +1,9 @@
 package spineapp.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -37,11 +34,6 @@ public class AccountType {
 
     @Column(name = "can_view_personalised_data")
     private Boolean canViewPersonalisedData;
-
-    @OneToMany
-    @JoinColumn(name = "type")
-    @JsonBackReference
-    private Set<Account> accounts = new HashSet<>();
 
     public AccountType() {}
 

@@ -1,6 +1,5 @@
 package spineapp.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +22,6 @@ public class Answer {
 
     @ManyToOne
     @JoinColumn(name = "answered_questionnaire", referencedColumnName = "id")
-    @JsonManagedReference
     private AnsweredQuestionnaire answeredQuestionnaire;
 
     public Answer() {}
