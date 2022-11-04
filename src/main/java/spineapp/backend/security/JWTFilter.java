@@ -23,7 +23,7 @@ public class JWTFilter extends OncePerRequestFilter {
     @Autowired private JWTUtil jwtUtil;
 
     /**
-     *
+     * Function which adds a filter to every request to the API and checks for a valid JWT Token. It rejects every request without or with an invalid JWT Token.
      * @param request An http request
      * @param response An http response
      * @param filterChain object which provides a look into invocation chain of the filtered request
