@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import spineapp.backend.daos.AccountRepository;
+import spineapp.backend.services.LoggedInUserDetailsService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
@@ -19,8 +19,6 @@ import java.security.SecureRandom;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired private AccountRepository accountRepository;
     @Autowired private JWTFilter filter;
     @Autowired private LoggedInUserDetailsService uds;
 

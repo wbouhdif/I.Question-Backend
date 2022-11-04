@@ -1,4 +1,4 @@
-package spineapp.backend.security;
+package spineapp.backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
