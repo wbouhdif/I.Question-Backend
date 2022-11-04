@@ -41,16 +41,6 @@ public class Account {
     @JoinColumn(name = "type", referencedColumnName = "id")
     private AccountType type;
 
-    @OneToMany
-    @JsonBackReference
-    @JoinColumn(name = "caregiver")
-    private Set<AnsweredQuestionnaire> answeredQuestionnaires = new HashSet<>();
-
-    @OneToMany
-    @JsonBackReference
-    @JoinColumn(name = "account")
-    private Set<Questionnaire> questionnaires = new HashSet<>();
-
     /**
      * Constructs an empty account without parameters. These can be defined after creation.
      */
