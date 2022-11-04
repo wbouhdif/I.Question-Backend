@@ -39,8 +39,16 @@ public class Questionnaire {
     @JsonBackReference
     private Set<EmployedQuestion> employedQuestions = new HashSet<>();
 
+    /**
+     * Constructs an empty questionnaire without parameters. These can be defined after creation.
+     */
     public Questionnaire() {}
 
+    /**
+     * Constructs a Questionnaire object.
+     * @param name Name of the questionnaire in question.
+     * @param account Account responsible for creating the questionnaire.
+     */
     public Questionnaire(String name, Account account) {
         this.name = name;
         this.account = account;
