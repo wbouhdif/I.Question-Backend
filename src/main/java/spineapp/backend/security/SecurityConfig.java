@@ -24,6 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired private JWTFilter filter;
     @Autowired private LoggedInUserDetailsService uds;
 
+    /**
+     * Configures the security of the http session of the user.
+     * @param http the {@link HttpSecurity} to modify.
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
