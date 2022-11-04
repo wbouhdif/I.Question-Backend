@@ -47,12 +47,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
     }
 
-
+    /**
+     * Creates a bean for the passwordEncoder. This lets Spring Boot handle the creation and management of the PasswordEncoder.
+     * @return Returns a BCryptPasswordEncoder with strength: 10 and new SecureRandom().
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10, new SecureRandom());
     }
 
+    /**
+     * Created a bean for the authenticationManager. This lets Spring Boot handle the creation and management of the authenticationManager.
+     * @return
+     * Returns an authenticationManagerBean.
+     * @throws Exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
