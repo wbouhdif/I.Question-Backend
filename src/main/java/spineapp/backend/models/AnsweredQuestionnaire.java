@@ -39,8 +39,17 @@ public class AnsweredQuestionnaire {
     @JsonBackReference
     private Set<Answer> answers = new HashSet<>();
 
+    /**
+     * Constructs an empty AnsweredQuestionnaire without parameters. These can be defined after creation
+     */
     public AnsweredQuestionnaire() {}
 
+    /**
+     * Constructs a new AnsweredQuestionnaire
+     * @param caregiver The Caregiver/healthcare worker who filled in the questionnaire
+     * @param questionnaire The questionnaire that was answered
+     * @param clientName The name of the client who answered the questionnaire
+     */
     public AnsweredQuestionnaire(Account caregiver, Questionnaire questionnaire, String clientName) {
         this.caregiver = caregiver;
         this.questionnaire = questionnaire;

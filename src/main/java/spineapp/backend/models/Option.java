@@ -26,8 +26,16 @@ public class Option {
     @JsonManagedReference
     private Question question;
 
+    /**
+     * Constructs en empty Option without parameters. These can be defined after creation.
+     */
     public Option() {}
 
+    /**
+     * Constructs a new Option
+     * @param text The text for the new option
+     * @param question The question the option will belong to
+     */
     public Option(String text, Question question) {
         this.text = text;
         this.question = question;

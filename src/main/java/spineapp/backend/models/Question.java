@@ -39,8 +39,17 @@ public class Question {
     @JsonBackReference
     private Set<Option> options = new HashSet<>();
 
+    /**
+     * Constructs an empty Question without parameters. These can be defined after creation.
+     */
     public Question() {}
 
+    /**
+     * Creates a new Question
+     * @param type The type of the new question
+     * @param text The Question's Text
+     * @param mandatory A check to see whether the question needs to be answered or if it can be skipped
+     */
     public Question(String type, String text, Boolean mandatory) {
         this.type = type;
         this.text = text;

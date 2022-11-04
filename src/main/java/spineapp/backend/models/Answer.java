@@ -27,7 +27,7 @@ public class Answer {
     private AnsweredQuestionnaire answeredQuestionnaire;
 
     /**
-     * Empty constructor for Answer without parameters. These can be defined after creation.
+     * Constructs an empty Answer without parameters. These can be defined after creation.
      */
     public Answer() {}
 
