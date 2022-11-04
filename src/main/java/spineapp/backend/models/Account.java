@@ -41,8 +41,31 @@ public class Account {
     @JoinColumn(name = "type", referencedColumnName = "id")
     private AccountType type;
 
+    @OneToMany
+    @JsonBackReference
+    @JoinColumn(name = "caregiver")
+    private Set<AnsweredQuestionnaire> answeredQuestionnaires = new HashSet<>();
+
+    @OneToMany
+    @JsonBackReference
+    @JoinColumn(name = "account")
+    private Set<Questionnaire> questionnaires = new HashSet<>();
+
+    /**
+     * Constructs an empty account without parameters. These can be defined after creation.
+     */
     public Account() {}
 
+    /**
+     * Constructs an Account object
+     * @param email Email address
+     * @param password password
+     * @param firstName first name
+     * @param lastName last name
+     * @param middleName middle name
+     * @param isValidated check to see if the account has been validated by the Admin
+     * @param type Type of the account
+     */
     public Account(String email, String password, String firstName, String lastName, String middleName, Boolean isValidated, AccountType type) {
         this.email = email;
         this.password = password;

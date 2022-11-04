@@ -35,8 +35,20 @@ public class AccountType {
     @Column(name = "can_view_personalised_data")
     private Boolean canViewPersonalisedData;
 
+    /**
+     * Constructs an empty account type without parameters. These can be defined after creation.
+     */
     public AccountType() {}
 
+    /**
+     * Constructs a new Account Type
+     * @param name Name
+     * @param canManageQuestionnaires A check to see whether the new account type can manage questionnaires
+     * @param canFillQuestionnaires A check to see whether the new account type can fill in existing questionnaires
+     * @param canAuthoriseAccounts A check to see whether the new account type can Authorise other accounts
+     * @param canViewAnonymousData A check to see whether the new account type can view anonymised data
+     * @param canViewPersonalisedData A check to see whether the new account type can view personalised data
+     */
     public AccountType(String name,
                        Boolean canManageQuestionnaires,
                        Boolean canFillQuestionnaires,
