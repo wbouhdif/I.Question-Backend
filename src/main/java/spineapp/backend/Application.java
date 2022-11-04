@@ -15,16 +15,29 @@ public class Application {
     private final AccountTypeRepository accountTypeRepository;
     private final AccountTypeDAO accountTypeDao;
 
+
+    /**
+     * Constructs new instance of Application with an accountTypeRepository and AccountTypeDao being instantiated via dependency injection.
+     * @param accountTypeRepository Instance of AccountTypeRepository.
+     * @param accountTypeDao Instance of AccountTypeDAO.
+     */
     @Autowired
     public Application(AccountTypeRepository accountTypeRepository, AccountTypeDAO accountTypeDao) {
         this.accountTypeRepository = accountTypeRepository;
         this.accountTypeDao = accountTypeDao;
     }
 
+    /**
+     * Main method which is the entry point of the java program.
+     * @param args Standard syntax of the main method.
+     */
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
+    /**
+     * Fires when application is fully running. Is responsible for creating account types if they are not yet present.
+     */
     @EventListener(ApplicationReadyEvent.class)
     public void createAccountTypes() {
         if (accountTypeRepository.findAll().isEmpty()) {
