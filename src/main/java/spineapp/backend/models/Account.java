@@ -52,16 +52,14 @@ public class Account {
      * @param password password
      * @param firstName first name
      * @param lastName last name
-     * @param middleName middle name
      * @param isValidated check to see if the account has been validated by the Admin
      * @param type Type of the account
      */
-    public Account(String email, String password, String firstName, String lastName, String middleName, Boolean isValidated, AccountType type) {
+    public Account(String email, String password, String firstName, String lastName, Boolean isValidated, AccountType type) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleName = middleName;
         this.isValidated = isValidated;
         this.type = type;
     }
