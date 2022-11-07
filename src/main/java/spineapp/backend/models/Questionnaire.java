@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -26,16 +24,16 @@ public class Questionnaire {
     @JoinColumn(name = "account", referencedColumnName = "id")
     private Account account;
 
-    @OneToMany
-    @JoinColumn(name = "questionnaire")
-    private Set<AnsweredQuestionnaire> answeredQuestionnaires = new HashSet<>();
-
-    @OneToMany
-    @JoinColumn(name = "questionnaire")
-    private Set<EmployedQuestion> employedQuestions = new HashSet<>();
-
+    /**
+     * Constructs an empty questionnaire without parameters. These can be defined after creation.
+     */
     public Questionnaire() {}
 
+    /**
+     * Constructs a Questionnaire object.
+     * @param name Name of the questionnaire in question.
+     * @param account Account responsible for creating the questionnaire.
+     */
     public Questionnaire(String name, Account account) {
         this.name = name;
         this.account = account;

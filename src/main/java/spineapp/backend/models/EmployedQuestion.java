@@ -28,8 +28,17 @@ public class EmployedQuestion {
     @Column
     private int position;
 
+    /**
+     * Constructs an empty Employed question without parameters. These can be defined after creation
+     */
     public EmployedQuestion() {}
 
+    /**
+     * Creates a new EmployedQuestion
+     * @param question The question that needs to be added
+     * @param questionnaire the questionnaire it needs to be added to
+     * @param position the position within the questionnaire where the question will be.
+     */
     public EmployedQuestion(Question question, Questionnaire questionnaire, int position) {
         this.question = question;
         this.questionnaire = questionnaire;

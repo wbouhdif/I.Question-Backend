@@ -17,26 +17,51 @@ public class AccountTypeController {
 
     private final AccountTypeDAO accountTypeDAO;
 
+    /**
+     * Constructor to create a new Account Type Controller for a given DAO
+     * @param accountTypeDAO A DAO of Account Type
+     */
     @Autowired
     AccountTypeController(AccountTypeDAO accountTypeDAO) {
         this.accountTypeDAO = accountTypeDAO;
     }
 
+    /**
+     * Gathers a list of all the account types using the Account Type DAO's getAccountTypes() function.
+     * @return
+     * returns a list of Account Types.
+     */
     @GetMapping
     public List<AccountType> getAccountTypes() {
         return accountTypeDAO.getAccountTypes();
     }
 
+    /**
+     * returns the specific Account Type belonging to the ID given as parameter
+     * @param id ID of an Account Type
+     * @return
+     * returns the Account Type belonging to the given ID
+     */
     @GetMapping (path = "{account_typeId}")
     public Optional<AccountType> getAccountType(@PathVariable("account_typeId") UUID id) {
         return accountTypeDAO.getAccountTypeById(id);
     }
 
+    /**
+     * Create a new Account Type
+     * @param accountType An account type given as a parameter for creating a new Account Type
+     */
     @PostMapping
     public void createAccountType(@RequestBody AccountType accountType) {
         accountTypeDAO.createAccountType(accountType);
     }
 
+    /**
+     * Will attempt to delete the Account Type belonging to the given ID.
+     * @param id ID belonging to an Account Type
+     * @throws EntityNotFoundException
+     * Will throw an expection if the Account Type belonging to the given ID does not exist.
+     */
     @DeleteMapping(path = "{account_typeId}")
     public void deleteAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
         if (!accountTypeDAO.existsById(id)) {

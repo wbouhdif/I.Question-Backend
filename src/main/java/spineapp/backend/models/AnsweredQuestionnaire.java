@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -30,12 +28,17 @@ public class AnsweredQuestionnaire {
     @Column(name = "client_name")
     private String clientName;
 
-    @OneToMany
-    @JoinColumn(name = "answered_questionnaire")
-    private Set<Answer> answers = new HashSet<>();
-
+    /**
+     * Constructs an empty AnsweredQuestionnaire without parameters. These can be defined after creation
+     */
     public AnsweredQuestionnaire() {}
 
+    /**
+     * Constructs a new AnsweredQuestionnaire
+     * @param caregiver The Caregiver/healthcare worker who filled in the questionnaire
+     * @param questionnaire The questionnaire that was answered
+     * @param clientName The name of the client who answered the questionnaire
+     */
     public AnsweredQuestionnaire(Account caregiver, Questionnaire questionnaire, String clientName) {
         this.caregiver = caregiver;
         this.questionnaire = questionnaire;

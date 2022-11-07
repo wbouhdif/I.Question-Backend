@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import spineapp.backend.daos.AccountRepository;
+import spineapp.backend.services.LoggedInUserDetailsService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
@@ -19,11 +19,14 @@ import java.security.SecureRandom;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired private AccountRepository accountRepository;
     @Autowired private JWTFilter filter;
     @Autowired private LoggedInUserDetailsService uds;
 
+    /**
+     * Configures the security of the http session of the user.
+     * @param http the {@link HttpSecurity} to modify.
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -47,12 +50,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
     }
 
-
+    /**
+     * Creates a bean for the passwordEncoder. This lets Spring Boot handle the creation and management of the PasswordEncoder.
+     * @return Returns a BCryptPasswordEncoder with strength: 10 and new SecureRandom().
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10, new SecureRandom());
     }
 
+    /**
+     * Created a bean for the authenticationManager. This lets Spring Boot handle the creation and management of the authenticationManager.
+     * @return
+     * Returns an authenticationManagerBean.
+     * @throws Exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
