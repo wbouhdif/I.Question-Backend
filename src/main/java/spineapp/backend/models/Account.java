@@ -33,9 +33,6 @@ public class Account {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "middle_name")
-    private String middleName;
-
     @Column(name = "is_validated")
     private Boolean isValidated;
 
@@ -53,12 +50,11 @@ public class Account {
 
     public Account() {}
 
-    public Account(String email, String password, String firstName, String lastName, String middleName, Boolean isValidated, AccountType type) {
+    public Account(String email, String password, String firstName, String lastName, Boolean isValidated, AccountType type) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleName = middleName;
         this.isValidated = isValidated;
         this.type = type;
     }
