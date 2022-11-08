@@ -67,4 +67,8 @@ public class AccountTypeDAO {
         return accountTypeRepository.existsById(id);
     }
 
+    public Optional<AccountType> getAccountTypeByName(String name) {
+        return accountTypeRepository.findByName(name);
+    }
+
 }
