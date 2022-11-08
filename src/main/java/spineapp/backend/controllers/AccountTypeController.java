@@ -45,11 +45,20 @@ public class AccountTypeController {
      * @return
      * returns the Account Type belonging to the given ID
      */
-    @GetMapping (path = "{account_typeId}")
+    @GetMapping (path = "id={account_typeId}")
     public Optional<AccountType> getAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
         Optional<AccountType> accountType = accountTypeDAO.getAccountTypeById(id);
         if (accountType.isEmpty()) {
             throw new EntityNotFoundException(id);
+        }
+        return accountType;
+    }
+
+    @GetMapping (path = "name={account_typeName}")
+    public Optional<AccountType> getAccountTypeByName(@PathVariable("account_typeName") String name) throws EntityNotFoundException {
+        Optional<AccountType> accountType = accountTypeDAO.getAccountTypeByName(name);
+        if (accountType.isEmpty()) {
+            throw new EntityNotFoundException(name);
         }
         return accountType;
     }
