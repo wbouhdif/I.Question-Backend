@@ -2,7 +2,6 @@ package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.AccountDAO;
@@ -50,12 +49,18 @@ public class AccountController {
     /**
      * Finds a specific account linked to the given ID parameter
      * @param id ID belonging to an account
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given id could not be found.
      * @return
      * returns the account which corresponds with the given ID parameter
      */
     @GetMapping (path = "{accountId}")
-    public Optional<Account> getAccount(@PathVariable("accountId") UUID id) {
-        return accountDAO.getAccountById(id);
+    public Optional<Account> getAccount(@PathVariable("accountId") UUID id) throws EntityNotFoundException {
+        Optional<Account> account = accountDAO.getAccountById(id);
+        if (account.isEmpty()) {
+            throw new EntityNotFoundException(id);
+        }
+        return account;
     }
 
     /**

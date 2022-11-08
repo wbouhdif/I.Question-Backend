@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import spineapp.backend.daos.AccountTypeDAO;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.exceptions.EntityNotFoundException;
+import spineapp.backend.models.Account;
 import spineapp.backend.models.AccountType;
 
 import java.util.List;
@@ -39,12 +40,18 @@ public class AccountTypeController {
     /**
      * returns the specific Account Type belonging to the ID given as parameter
      * @param id ID of an Account Type
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given id could not be found.
      * @return
      * returns the Account Type belonging to the given ID
      */
     @GetMapping (path = "{account_typeId}")
-    public Optional<AccountType> getAccountType(@PathVariable("account_typeId") UUID id) {
-        return accountTypeDAO.getAccountTypeById(id);
+    public Optional<AccountType> getAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
+        Optional<AccountType> accountType = accountTypeDAO.getAccountTypeById(id);
+        if (accountType.isEmpty()) {
+            throw new EntityNotFoundException(id);
+        }
+        return accountType;
     }
 
     /**
