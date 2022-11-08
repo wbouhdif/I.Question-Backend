@@ -12,4 +12,8 @@ public class EntityNotFoundException extends Exception {
         super("Entity with UUID " + id + " could not be found.");
     }
 
+    public EntityNotFoundException(String name) {
+        super("Entity with name " + name + " could not be found.");
+    }
+
 }
