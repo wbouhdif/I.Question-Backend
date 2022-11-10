@@ -6,11 +6,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.AccountDAO;
 import spineapp.backend.daos.AccountTypeDAO;
-import spineapp.backend.exceptions.EmailInvalidException;
 import spineapp.backend.exceptions.EmailTakenException;
 import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Account;
-import spineapp.backend.services.EmailValidationService;
 
 import java.util.List;
 import java.util.Optional;
@@ -70,13 +68,9 @@ public class AccountController {
      * Will throw an exception in case the email address used to register the new user is already in the database.
      * @throws EntityNotFoundException
      * Will throw an exception if the account on the given ID does not exist
-     * @throws EmailInvalidException
-     * Will throw an exception if the email address used to register the new user is not a valid email address (e.g. bad formatting or no domain given)
      */
     @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException, EmailInvalidException {
-
-        EmailValidationService.validateEmailAddress(account.getEmail());
+    public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException {
 
         if (accountDAO.findAccountByEmail(account.getEmail()).isPresent()) {
             throw new EmailTakenException();
