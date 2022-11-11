@@ -62,7 +62,7 @@ public class AccountController {
     }
 
 
-    @GetMapping (path = "{email}")
+    @GetMapping (path = "email={email}")
     public Optional<Account> getAccountByEmail(@PathVariable("email") String email) throws EntityNotFoundException {
         Optional<Account> account = accountDAO.findAccountByEmail(email);
         if (account.isEmpty()) {
