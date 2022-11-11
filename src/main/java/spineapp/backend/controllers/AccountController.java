@@ -96,13 +96,13 @@ public class AccountController {
         accountDAO.registerNewAccount(account);
     }
 
-    @PutMapping(path = "{accountId}/validated")
-    public void setValidated(@PathVariable("accountId") UUID id, @RequestBody boolean validated) throws EntityNotFoundException {
+    @PutMapping(path = "{accountId}/authorised")
+    public void setAuthorised(@PathVariable("accountId") UUID id, @RequestBody boolean authorised) throws EntityNotFoundException {
         if (!accountDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
 
-        accountDAO.setValidated(id, validated);
+        accountDAO.setAuthorised(id, authorised);
     }
 
     /**

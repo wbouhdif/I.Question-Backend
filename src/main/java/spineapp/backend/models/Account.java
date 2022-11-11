@@ -31,8 +31,8 @@ public class Account {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "is_validated")
-    private Boolean isValidated;
+    @Column
+    private Boolean authorised;
 
     @ManyToOne
     @JoinColumn(name = "type", referencedColumnName = "id")
@@ -49,15 +49,15 @@ public class Account {
      * @param password password
      * @param firstName first name
      * @param lastName last name
-     * @param isValidated check to see if the account has been validated by the Admin
+     * @param authorised check to see if the account has been authorised by the Admin
      * @param type Type of the account
      */
-    public Account(String email, String password, String firstName, String lastName, Boolean isValidated, AccountType type) {
+    public Account(String email, String password, String firstName, String lastName, Boolean authorised, AccountType type) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isValidated = isValidated;
+        this.authorised = authorised;
         this.type = type;
     }
 

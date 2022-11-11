@@ -79,8 +79,8 @@ public class AccountDAO {
     }
 
     @Transactional
-    public void setValidated(UUID accountId, boolean validated) {
+    public void setAuthorised(UUID accountId, boolean authorised) {
         Optional<Account> account = accountRepository.findById(accountId);
-        account.get().setIsValidated(validated);
+        account.get().setAuthorised(authorised);
     }
 }
