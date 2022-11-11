@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spineapp.backend.models.Account;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -75,5 +76,11 @@ public class AccountDAO {
      */
     public boolean existsById(UUID id) {
         return accountRepository.existsById(id);
+    }
+
+    @Transactional
+    public void setValidated(UUID accountId, boolean validated) {
+        Optional<Account> account = accountRepository.findById(accountId);
+        account.get().setIsValidated(validated);
     }
 }

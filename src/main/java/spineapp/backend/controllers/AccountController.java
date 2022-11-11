@@ -96,6 +96,15 @@ public class AccountController {
         accountDAO.registerNewAccount(account);
     }
 
+    @PutMapping(path = "{accountId}/validated")
+    public void setValidated(@PathVariable("accountId") UUID id, @RequestBody boolean validated) throws EntityNotFoundException {
+        if (!accountDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+
+        accountDAO.setValidated(id, validated);
+    }
+
     /**
      * Used to delete an existing account from the database
      * @param id an ID belonging to an Account
