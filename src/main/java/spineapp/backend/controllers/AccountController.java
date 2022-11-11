@@ -61,6 +61,16 @@ public class AccountController {
         return account;
     }
 
+
+    @GetMapping (path = "email={email}")
+    public Optional<Account> getAccountByEmail(@PathVariable("email") String email) throws EntityNotFoundException {
+        Optional<Account> account = accountDAO.findAccountByEmail(email);
+        if (account.isEmpty()) {
+            throw new EntityNotFoundException(email);
+        }
+        return account;
+    }
+
     /**
      * Registers a new account for a user
      * @param account a new account instance to register the new account on
