@@ -42,16 +42,11 @@ public class AuthController {
         try {
             UsernamePasswordAuthenticationToken authInputToken =
                     new UsernamePasswordAuthenticationToken(body.getEmail(), body.getPassword());
-
             authManager.authenticate(authInputToken);
-
             String token = jwtUtil.generateToken(body.getEmail());
-
             return Collections.singletonMap("jwt-token", token);
         }catch (AuthenticationException authExc){
             throw new RuntimeException("Invalid Login Credentials");
         }
     }
-
-
 }
