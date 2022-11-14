@@ -24,6 +24,11 @@ public class Answer {
     @JoinColumn(name = "answered_questionnaire", referencedColumnName = "id", nullable = false)
     private AnsweredQuestionnaire answeredQuestionnaire;
 
+    @ManyToOne
+    @JoinColumn(name = "question", referencedColumnName = "id", nullable = false)
+    private Question question;
+
+
     /**
      * Constructs an empty Answer without parameters. These can be defined after creation.
      */
@@ -34,9 +39,10 @@ public class Answer {
      * @param text Text for the answer
      * @param answeredQuestionnaire The answered questionnaire the answer belongs to
      */
-    public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire) {
+    public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire, Question question) {
         this.text = text;
         this.answeredQuestionnaire = answeredQuestionnaire;
+        this.question = question;
     }
 
 }
