@@ -21,5 +21,12 @@ public class QuestionnaireDAO {
         return questionnaireRepository.findById(id);
     }
 
+    public void createQuestionnaire(Questionnaire questionnaire){
+        questionnaireRepository.save(questionnaire);
+    }
+
+    public boolean existsById(UUID id){
+        return questionnaireRepository.existsById(id);
+    }
 
 }
