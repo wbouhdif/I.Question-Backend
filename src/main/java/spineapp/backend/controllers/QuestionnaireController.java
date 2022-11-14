@@ -1,10 +1,7 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.QuestionnaireDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Questionnaire;
@@ -30,6 +27,11 @@ public class QuestionnaireController {
             throw new EntityNotFoundException(id);
         }
         return questionnaire;
+    }
+
+    @PostMapping
+    public void createQuestionnaire(@RequestBody Questionnaire questionnaire) {
+        questionnaireDAO.createQuestionnaire(questionnaire);
     }
 
 }
