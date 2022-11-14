@@ -1,14 +1,14 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.QuestionDAO;
+import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Question;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "api/question")
@@ -28,6 +28,20 @@ public class QuestionController {
     @Autowired
     public QuestionController(QuestionDAO questionDAO) {
         this.questionDAO = questionDAO;
+    }
+
+    @GetMapping(path = "{questionId}")
+    public Optional<Question> getQuestion(@PathVariable("questionId") UUID id) throws EntityNotFoundException {
+        Optional<Question> question = questionDAO.getQuestionById(id);
+        if (question.isEmpty()) {
+            throw new EntityNotFoundException(id);
+        }
+        return question;
+    }
+
+    @PostMapping
+    public void createQuestion(@RequestBody Question question) {
+        questionDAO.createQuestion(question);
     }
 
 }
