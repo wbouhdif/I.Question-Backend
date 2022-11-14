@@ -18,11 +18,11 @@ public class EmployedQuestion {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "question", referencedColumnName = "id")
+    @JoinColumn(name = "question", referencedColumnName = "id", nullable = false)
     private Question question;
 
     @ManyToOne
-    @JoinColumn(name = "questionnaire", referencedColumnName = "id")
+    @JoinColumn(name = "questionnaire", referencedColumnName = "id", nullable = false)
     private Questionnaire questionnaire;
 
     @Column

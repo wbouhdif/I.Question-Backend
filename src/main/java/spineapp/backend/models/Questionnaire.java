@@ -17,7 +17,7 @@ public class Questionnaire {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne

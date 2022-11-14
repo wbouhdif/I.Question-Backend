@@ -17,11 +17,11 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "answered_questionnaire", referencedColumnName = "id")
+    @JoinColumn(name = "answered_questionnaire", referencedColumnName = "id", nullable = false)
     private AnsweredQuestionnaire answeredQuestionnaire;
 
     /**

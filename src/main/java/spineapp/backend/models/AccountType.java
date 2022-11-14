@@ -17,22 +17,22 @@ public class AccountType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "can_manage_questionnaires")
+    @Column(name = "can_manage_questionnaires", nullable = false)
     private Boolean canManageQuestionnaires;
 
-    @Column(name = "can_fill_questionnaires")
+    @Column(name = "can_fill_questionnaires", nullable = false)
     private Boolean canFillQuestionnaires;
 
-    @Column(name = "can_authorise_accounts")
+    @Column(name = "can_authorise_accounts", nullable = false)
     private Boolean canAuthoriseAccounts;
 
-    @Column(name = "can_view_anonymous_data")
+    @Column(name = "can_view_anonymous_data", nullable = false)
     private Boolean canViewAnonymousData;
 
-    @Column(name = "can_view_personalised_data")
+    @Column(name = "can_view_personalised_data", nullable = false)
     private Boolean canViewPersonalisedData;
 
     /**

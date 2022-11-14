@@ -18,24 +18,24 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String email;
 
-    @Column
+    @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
 
-    @Column
+    @Column(nullable = false)
     private Boolean authorised;
 
     @ManyToOne
-    @JoinColumn(name = "type", referencedColumnName = "id")
+    @JoinColumn(name = "type", referencedColumnName = "id", nullable = false)
     private AccountType type;
 
     /**

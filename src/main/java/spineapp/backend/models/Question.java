@@ -17,13 +17,13 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column
+    @Column(nullable = false)
     private String type;
 
-    @Column
+    @Column(nullable = false)
     private String text;
 
-    @Column
+    @Column(nullable = false)
     private Boolean mandatory;
 
     /**
