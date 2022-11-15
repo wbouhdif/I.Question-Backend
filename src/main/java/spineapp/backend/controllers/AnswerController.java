@@ -28,8 +28,8 @@ public class AnswerController {
         answerDAO.createAnswer(answer);
     }
 
-    @GetMapping(path = "answeredQuestionnaire={answeredQuestionnaire}")
-    public List<Answer> getAnswersByAnsweredQuestionnaire(@PathVariable("answeredQuestionnaire") UUID answeredQuestionnaire) throws EntityNotFoundException {
+    @GetMapping(path = "answered_questionnaire={answered_questionnaire}")
+    public List<Answer> getAnswersByAnsweredQuestionnaire(@PathVariable("answered_questionnaire") UUID answeredQuestionnaire) throws EntityNotFoundException {
         if (!answeredQuestionnaireDAO.existsById(answeredQuestionnaire)) {
             throw new EntityNotFoundException(answeredQuestionnaire);
         }
