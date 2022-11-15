@@ -28,6 +28,7 @@ public class AccountDAO {
      * @param account instance of an account that is to be registered.
      */
     public void registerNewAccount(Account account) {
+//        accountRepository.save(account);
         accountRepository.save(account);
     }
 
