@@ -25,8 +25,8 @@ public class Answer {
     private AnsweredQuestionnaire answeredQuestionnaire;
 
     @ManyToOne
-    @JoinColumn(name = "question", referencedColumnName = "id", nullable = false)
-    private Question question;
+    @JoinColumn(name = "employed_question", referencedColumnName = "id", nullable = false)
+    private EmployedQuestion employedQuestion;
 
 
     /**
@@ -39,10 +39,10 @@ public class Answer {
      * @param text Text for the answer
      * @param answeredQuestionnaire The answered questionnaire the answer belongs to
      */
-    public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire, Question question) {
+    public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire, EmployedQuestion employedQuestion) {
         this.text = text;
         this.answeredQuestionnaire = answeredQuestionnaire;
-        this.question = question;
+        this.employedQuestion = employedQuestion;
     }
 
 }
