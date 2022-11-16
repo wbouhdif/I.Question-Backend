@@ -120,4 +120,12 @@ public class AccountController {
         accountDAO.deleteAccount(id);
     }
 
+    @PutMapping(path = "{accountId}")
+    public void updatePassword (@PathVariable("accountId") UUID id, @RequestBody String password) throws EntityNotFoundException {
+        if (!accountDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+        String encodedPassword = passwordEncoder.encode(password);
+        accountDAO.updatePassword(id, encodedPassword);
+    }
 }
