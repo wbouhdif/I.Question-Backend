@@ -38,5 +38,5 @@ public class QuestionDAO {
         return questionRepository.existsById(id);
     }
 
-    //add "exists by question text" method + add to controller and to repository
+   public boolean existsByText(String text) {return questionRepository.findQuestionByText(text).isPresent();}
 }
