@@ -84,4 +84,9 @@ public class AccountDAO {
         Optional<Account> account = accountRepository.findById(accountId);
         account.get().setAuthorised(authorised);
     }
+
+    public void updatePassword(UUID id, String encodedPassword) {
+        Optional<Account> account = accountRepository.findById(id);
+        account.get().setPassword(encodedPassword);
+    }
 }
