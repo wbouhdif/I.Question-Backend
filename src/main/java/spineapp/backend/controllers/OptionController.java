@@ -1,10 +1,13 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.OptionDAO;
 import spineapp.backend.daos.QuestionDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
+import spineapp.backend.exceptions.OptionNotFoundByIdException;
+import spineapp.backend.exceptions.OptionNotFoundByTextException;
 import spineapp.backend.models.Option;
 
 import java.util.List;
@@ -23,8 +26,16 @@ public class OptionController {
         this.questionDAO = questionDAO;
     }
 
-    @PostMapping
-    public void createOption(@RequestBody Option option) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createNewOption(@RequestBody Option option) throws OptionNotFoundByIdException, OptionNotFoundByTextException {
+
+        if (optionDAO.getOptionByID(option.getId()).isPresent()){
+            throw new OptionNotFoundByIdException();
+        }
+
+        if (optionDAO.getOptionByText(option.getText()).isPresent()){
+            throw new OptionNotFoundByTextException();
+        }
         optionDAO.createOption(option);
     }
 
