@@ -24,22 +24,17 @@ public class QuestionController {
         return questionDAO.getQuestions();
     }
 
-    @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UUID createNewQuestion(@RequestBody Question question) throws QuestionExistsByIdException, QuestionExistsByTextException {
+    @Autowired
+    public QuestionController(QuestionDAO questionDAO) {
+        this.questionDAO = questionDAO;
+    }
 
-        if (questionDAO.existsById(question.getId())) {
-            throw new QuestionExistsByIdException();
-        }
-
+    @PostMapping
+    public UUID createQuestion(@RequestBody Question question) throws QuestionExistsByTextException {
         if (questionDAO.existsByText(question.getText())){
             throw new QuestionExistsByTextException();
         }
         return questionDAO.createQuestion(question);
-    }
-
-    @Autowired
-    public QuestionController(QuestionDAO questionDAO) {
-        this.questionDAO = questionDAO;
     }
 
     @GetMapping(path = "{questionId}")
@@ -50,10 +45,4 @@ public class QuestionController {
         }
         return question;
     }
-
-    @PostMapping
-    public void createQuestion(@RequestBody Question question) {
-        questionDAO.createQuestion(question);
-    }
-
 }

@@ -25,18 +25,16 @@ public class OptionController {
         this.optionDAO = optionDAO;
         this.questionDAO = questionDAO;
     }
+    
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createNewOption(@RequestBody Option option) throws OptionNotFoundByIdException, OptionNotFoundByTextException {
-
-        if (optionDAO.getOptionByID(option.getId()).isPresent()){
-            throw new OptionNotFoundByIdException();
-        }
+    @PostMapping
+    public void createNewOption(@RequestBody Option option) throws EntityNotFoundException {
 
         if (optionDAO.getOptionByText(option.getText()).isPresent()){
-            throw new OptionNotFoundByTextException();
+            throw new EntityNotFoundException(option.getText());
         }
         optionDAO.createOption(option);
+
     }
 
     @GetMapping(path = "question={question}")
