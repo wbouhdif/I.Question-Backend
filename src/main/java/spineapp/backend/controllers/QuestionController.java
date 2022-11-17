@@ -1,13 +1,9 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import spineapp.backend.daos.OptionDAO;
 import spineapp.backend.daos.QuestionDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
-import spineapp.backend.exceptions.QuestionExistsByIdException;
-import spineapp.backend.exceptions.QuestionExistsByTextException;
 import spineapp.backend.models.Question;
 
 import java.util.List;
@@ -30,9 +26,9 @@ public class QuestionController {
     }
 
     @PostMapping
-    public UUID createQuestion(@RequestBody Question question) throws QuestionExistsByTextException {
+    public UUID createQuestion(@RequestBody Question question) throws EntityNotFoundException{
         if (questionDAO.existsByText(question.getText())){
-            throw new QuestionExistsByTextException();
+            throw new EntityNotFoundException(question.getId());
         }
         return questionDAO.createQuestion(question);
     }

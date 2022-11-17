@@ -1,13 +1,10 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.OptionDAO;
 import spineapp.backend.daos.QuestionDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
-import spineapp.backend.exceptions.OptionNotFoundByIdException;
-import spineapp.backend.exceptions.OptionNotFoundByTextException;
 import spineapp.backend.models.Option;
 
 import java.util.List;
