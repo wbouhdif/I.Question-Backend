@@ -16,9 +16,6 @@ public class QuestionController {
 
     private final QuestionDAO questionDAO;
 
-    public List<Question> getQuestions(){
-        return questionDAO.getQuestions();
-    }
 
     @Autowired
     public QuestionController(QuestionDAO questionDAO) {
@@ -41,4 +38,10 @@ public class QuestionController {
         }
         return question;
     }
+
+    @GetMapping
+    public List<Question> getQuestions(){
+        return questionDAO.getQuestions();
+    }
+
 }

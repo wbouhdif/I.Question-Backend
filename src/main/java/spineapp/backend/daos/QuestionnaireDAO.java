@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spineapp.backend.models.Questionnaire;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,6 +16,10 @@ public class QuestionnaireDAO {
     @Autowired
     public QuestionnaireDAO(QuestionnaireRepository questionnaireRepository) {
         this.questionnaireRepository = questionnaireRepository;
+    }
+
+    public List<Questionnaire> getQuestionnaires(){
+        return questionnaireRepository.findAll();
     }
 
     public Optional<Questionnaire> getQuestionnaireById(UUID id) {
