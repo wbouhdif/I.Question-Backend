@@ -8,7 +8,6 @@ import java.util.Properties;
 public class SendEmailService {
 
     public void SendNewPassword(String email, String newPassword) {
-
         final String email_username = "noreply.spine.ngo@gmail.com";
         final String email_password = "rbuxgkumcuqvzwfp";
 
@@ -16,7 +15,7 @@ public class SendEmailService {
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+        prop.put("mail.smtp.starttls.enable", "true");
 
         Session session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
