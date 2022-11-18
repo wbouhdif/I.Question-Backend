@@ -10,7 +10,7 @@ import spineapp.backend.exceptions.EmailTakenException;
 import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Account;
 import spineapp.backend.services.GeneratePassword;
-import spineapp.backend.services.SendEmail;
+import spineapp.backend.services.SendEmailService;
 
 import java.util.List;
 import java.util.Optional;
@@ -127,6 +127,6 @@ public class AccountController {
         String password = GeneratePassword.getInstance().generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);
-        SendEmail.getInstance().SendNewPassword(email, password);
+        SendEmailService.getInstance().SendNewPassword(email, password);
     }
 }
