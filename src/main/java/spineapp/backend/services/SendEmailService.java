@@ -5,7 +5,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class SendEmail {
+public class SendEmailService {
 
     public void SendNewPassword(String email, String newPassword) {
 
@@ -45,10 +45,10 @@ public class SendEmail {
     }
 
 
-    private static SendEmail instance;
-    public static SendEmail getInstance() {
+    private static SendEmailService instance;
+    public static SendEmailService getInstance() {
         if (instance == null) {
-            instance = new SendEmail();
+            instance = new SendEmailService();
         }
         return instance;
     }
