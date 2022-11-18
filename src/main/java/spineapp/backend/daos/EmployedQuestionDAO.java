@@ -24,5 +24,8 @@ public class EmployedQuestionDAO {
     public List<EmployedQuestion> getEmployedQuestionsByQuestionnaire(UUID questionnaireId) {
         return employedQuestionRepository.findAllByQuestionnaire(questionnaireId);
     }
+    public boolean existsById(UUID id){
+        return employedQuestionRepository.existsById(id);
+    }
 
 }

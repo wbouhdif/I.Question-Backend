@@ -33,4 +33,12 @@ public class AnsweredQuestionnaireDAO {
         return answeredQuestionnaire.getId();
     }
 
+    public boolean existsById(UUID id){
+        return answeredQuestionnaireRepository.existsById(id);
+    }
+
+    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByQuestionnaire(UUID questionnaireId) {
+        return answeredQuestionnaireRepository.getAnsweredQuestionnairesByQuestionnaire(questionnaireId);
+    }
+
 }

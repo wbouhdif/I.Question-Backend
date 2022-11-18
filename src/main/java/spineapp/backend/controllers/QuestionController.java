@@ -20,14 +20,17 @@ public class QuestionController {
         return questionDAO.getQuestions();
     }
 
-//    @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-//    public void createNewQuestion(@RequestMapping Question question){
-//
-//    }
-
     @Autowired
     public QuestionController(QuestionDAO questionDAO) {
         this.questionDAO = questionDAO;
+    }
+
+    @PostMapping
+    public UUID createQuestion(@RequestBody Question question) throws EntityNotFoundException{
+        if (questionDAO.existsByText(question.getText())){
+            throw new EntityNotFoundException(question.getId());
+        }
+        return questionDAO.createQuestion(question);
     }
 
     @GetMapping(path = "{questionId}")
@@ -38,10 +41,4 @@ public class QuestionController {
         }
         return question;
     }
-
-    @PostMapping
-    public void createQuestion(@RequestBody Question question) {
-        questionDAO.createQuestion(question);
-    }
-
 }
