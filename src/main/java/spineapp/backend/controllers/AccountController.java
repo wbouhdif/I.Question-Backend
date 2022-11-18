@@ -9,6 +9,8 @@ import spineapp.backend.daos.AccountTypeDAO;
 import spineapp.backend.exceptions.EmailTakenException;
 import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Account;
+import spineapp.backend.services.GeneratePassword;
+import spineapp.backend.services.SendEmail;
 
 import java.util.List;
 import java.util.Optional;
@@ -120,12 +122,11 @@ public class AccountController {
         accountDAO.deleteAccount(id);
     }
 
-    @PutMapping(path = "{accountId}")
-    public void updatePassword (@PathVariable("accountId") UUID id, @RequestBody String password) throws EntityNotFoundException {
-        if (!accountDAO.existsById(id)) {
-            throw new EntityNotFoundException(id);
-        }
+    @PutMapping(path = "/newpassword/{accountId}")
+    public void updatePassword (@PathVariable("accountId") UUID id, @RequestBody String email){
+        String password = GeneratePassword.getInstance().generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);
+        SendEmail.getInstance().SendNewPassword(email, password);
     }
 }
