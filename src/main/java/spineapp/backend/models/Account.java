@@ -22,7 +22,6 @@ public class Account {
     private String email;
 
     @Column(nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "first_name", nullable = false)

@@ -1,12 +1,9 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.QuestionDAO;
-import spineapp.backend.exceptions.EmailTakenException;
 import spineapp.backend.exceptions.EntityNotFoundException;
-import spineapp.backend.exceptions.QuestionExistsException;
 import spineapp.backend.models.Question;
 
 import java.util.List;
@@ -19,25 +16,18 @@ public class QuestionController {
 
     private final QuestionDAO questionDAO;
 
-    public List<Question> getQuestions(){
-        return questionDAO.getQuestions();
-    }
-
-    @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createNewQuestion(@RequestBody Question question) throws QuestionExistsException {
-
-        if (questionDAO.existsById(question.getId())) {
-            throw new QuestionExistsException();
-        }
-        //add potential "exists by question text" error to prevent duplicate questions
-
-
-        questionDAO.createQuestion(question);
-    }
 
     @Autowired
     public QuestionController(QuestionDAO questionDAO) {
         this.questionDAO = questionDAO;
+    }
+
+    @PostMapping
+    public UUID createQuestion(@RequestBody Question question) throws EntityNotFoundException{
+        if (questionDAO.existsByText(question.getText())){
+            throw new EntityNotFoundException(question.getId());
+        }
+        return questionDAO.createQuestion(question);
     }
 
     @GetMapping(path = "{questionId}")
@@ -49,9 +39,9 @@ public class QuestionController {
         return question;
     }
 
-    @PostMapping
-    public void createQuestion(@RequestBody Question question) {
-        questionDAO.createQuestion(question);
+    @GetMapping
+    public List<Question> getQuestions(){
+        return questionDAO.getQuestions();
     }
 
 }

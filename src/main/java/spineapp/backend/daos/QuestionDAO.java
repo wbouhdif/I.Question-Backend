@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import spineapp.backend.models.Question;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,8 +19,10 @@ public class QuestionDAO {
         this.questionRepository = questionRepository;
     }
 
-    public void createQuestion(Question question){
+    @Transactional
+    public UUID createQuestion(Question question){
         questionRepository.save(question);
+        return question.getId();
     }
 
     public List<Question> getQuestions(){
@@ -38,5 +41,5 @@ public class QuestionDAO {
         return questionRepository.existsById(id);
     }
 
-    //add "exists by question text" method + add to controller and to repository
+   public boolean existsByText(String text) {return questionRepository.findQuestionByText(text).isPresent();}
 }

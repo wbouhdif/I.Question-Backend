@@ -28,6 +28,7 @@ public class AccountDAO {
      * @param account instance of an account that is to be registered.
      */
     public void registerNewAccount(Account account) {
+//        accountRepository.save(account);
         accountRepository.save(account);
     }
 
@@ -82,5 +83,9 @@ public class AccountDAO {
     public void setAuthorised(UUID accountId, boolean authorised) {
         Optional<Account> account = accountRepository.findById(accountId);
         account.get().setAuthorised(authorised);
+    }
+
+    public void updatePassword(UUID id, String encodedPassword) {
+        accountRepository.updatePassword(encodedPassword,id);
     }
 }

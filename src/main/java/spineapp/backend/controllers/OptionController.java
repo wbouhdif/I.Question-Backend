@@ -22,10 +22,16 @@ public class OptionController {
         this.optionDAO = optionDAO;
         this.questionDAO = questionDAO;
     }
+    
 
     @PostMapping
-    public void createOption(@RequestBody Option option) {
+    public void createNewOption(@RequestBody Option option) throws EntityNotFoundException {
+
+        if (optionDAO.getOptionByText(option.getText()).isPresent()){
+            throw new EntityNotFoundException(option.getText());
+        }
         optionDAO.createOption(option);
+
     }
 
     @GetMapping(path = "question={question}")

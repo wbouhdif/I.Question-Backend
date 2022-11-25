@@ -24,6 +24,9 @@ public class AnswerDAO {
     public List<Answer> getAnswersByAnsweredQuestionnaire(UUID answeredQuestionnaire) {
         return answerRepository.findAllByAnsweredQuestionnaire(answeredQuestionnaire);
     }
+    public List<Answer> getAnswersByEmployedQuestion(UUID employedQuestion) {
+        return answerRepository.findAllByEmployedQuestion(employedQuestion);
+    }
 
 
 }
