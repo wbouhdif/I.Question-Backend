@@ -35,9 +35,6 @@ public class SendEmailService {
             message.setText("Beste gebruiker, \n\n" + "Uw nieuwe wachtwoord is: " + newPassword + "\n\n" + "Met vriendelijke groet,\n" + "Het Spine-team");
 
             Transport.send(message);
-
-            System.out.println("Done");
-
         } catch (MessagingException e) {
             e.printStackTrace();
         }

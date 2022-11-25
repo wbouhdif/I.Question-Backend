@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import spineapp.backend.services.LoggedInUserDetailsService;
-
 import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
 
@@ -37,7 +36,8 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/account/**").hasRole("SPINE")
+                .antMatchers("/api/account/**").hasRole("CAREGIVER")
                 .and()
                 .userDetailsService(uds)
                 .exceptionHandling()
