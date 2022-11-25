@@ -34,6 +34,6 @@ public class LoggedInUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 email,
                 account.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + account.getType().getName().toUpperCase())));
     }
 }
