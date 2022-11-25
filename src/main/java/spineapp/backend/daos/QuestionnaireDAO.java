@@ -2,6 +2,7 @@ package spineapp.backend.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import spineapp.backend.models.Questionnaire;
 
 import java.util.List;
@@ -26,8 +27,10 @@ public class QuestionnaireDAO {
         return questionnaireRepository.findById(id);
     }
 
-    public void createQuestionnaire(Questionnaire questionnaire){
+    @Transactional
+    public UUID createQuestionnaire(Questionnaire questionnaire){
         questionnaireRepository.save(questionnaire);
+        return questionnaire.getId();
     }
 
     public boolean existsById(UUID id){
