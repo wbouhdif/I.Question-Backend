@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.QuestionnaireDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
-import spineapp.backend.models.Question;
 import spineapp.backend.models.Questionnaire;
 
 import java.util.List;
@@ -23,8 +22,8 @@ public class QuestionnaireController {
     }
 
     @PostMapping
-    public void createQuestionnaire(@RequestBody Questionnaire questionnaire) {
-        questionnaireDAO.createQuestionnaire(questionnaire);
+    public UUID createQuestionnaire(@RequestBody Questionnaire questionnaire) {
+        return questionnaireDAO.createQuestionnaire(questionnaire);
     }
     @GetMapping(path = "{questionnaireId}")
     public Optional<Questionnaire> getQuestionnaire(@PathVariable("questionnaireId") UUID id) throws EntityNotFoundException {
