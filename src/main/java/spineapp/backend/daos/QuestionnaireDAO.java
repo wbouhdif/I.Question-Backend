@@ -18,7 +18,6 @@ public class QuestionnaireDAO {
     public QuestionnaireDAO(QuestionnaireRepository questionnaireRepository) {
         this.questionnaireRepository = questionnaireRepository;
     }
-    public List<Questionnaire> getQuestionnaires() {return questionnaireRepository.findAll();}
 
     public List<Questionnaire> getQuestionnaires(){
         return questionnaireRepository.findAll();
