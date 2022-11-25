@@ -6,6 +6,7 @@ import spineapp.backend.daos.QuestionnaireDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.models.Questionnaire;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
 @RequestMapping(path = "api/questionnaire")
 public class QuestionnaireController {
 
-    private final QuestionnaireDAO questionnaireDAO;
+    private QuestionnaireDAO questionnaireDAO;
 
     @Autowired
     public QuestionnaireController(QuestionnaireDAO questionnaireDAO) {
@@ -21,17 +22,30 @@ public class QuestionnaireController {
     }
 
     @GetMapping(path = "{questionnaireId}")
-    public Optional<Questionnaire> getQuestionnaire(@PathVariable("questionnaireId") UUID id) throws EntityNotFoundException {
+    public Optional<Questionnaire> getQuestionnaireID(@PathVariable("questionnaireId") UUID id) throws EntityNotFoundException {
         Optional<Questionnaire> questionnaire = questionnaireDAO.getQuestionnaireById(id);
         if (questionnaire.isEmpty()) {
             throw new EntityNotFoundException(id);
         }
         return questionnaire;
     }
+    @GetMapping
+    public List<Questionnaire> getQuestionnaire() {
+        return questionnaireDAO.getQuestionnaires();
+    }
 
     @PostMapping
     public void createQuestionnaire(@RequestBody Questionnaire questionnaire) {
         questionnaireDAO.createQuestionnaire(questionnaire);
+    }
+
+    @DeleteMapping(path = "{questionnaireId}")
+    public void deleteQuestionnaire(@PathVariable("questionnaireId") UUID id) throws EntityNotFoundException {
+        if (!questionnaireDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+
+        questionnaireDAO.deleteQuestionnaire(id);
     }
 
 }
