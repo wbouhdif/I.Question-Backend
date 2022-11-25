@@ -2,6 +2,7 @@ package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import spineapp.backend.daos.AccountDAO;
@@ -118,12 +119,11 @@ public class AccountController {
         if (!accountDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
-
         accountDAO.deleteAccount(id);
     }
 
     @PutMapping(path = "/newpassword/{accountId}")
-    public void updatePassword (@PathVariable("accountId") UUID id, @RequestBody String email){
+    public void newPassword (@PathVariable("accountId") UUID id, @RequestBody String email) {
         String password = GeneratePassword.getInstance().generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);
