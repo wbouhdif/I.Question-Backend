@@ -3,6 +3,7 @@ package spineapp.backend.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,9 +36,12 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeHttpRequests()
+                // ALL ALLOWED ENDPOINTS FOR ALL USERS (AUTHENTICATED AND UNAUTHENTICATED)//
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/account/**").hasRole("SPINE")
-                .antMatchers("/api/account/**").hasRole("CAREGIVER")
+                .antMatchers("/newpassword/{accountId}").permitAll()
+                // ADMIN ACCOUNT TYPE ROUTES//
+                .antMatchers("/api/account/{accountId}/authorised").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/account/{accountId}").hasRole("ADMIN")
                 .and()
                 .userDetailsService(uds)
                 .exceptionHandling()

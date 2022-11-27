@@ -45,7 +45,6 @@ public class QuestionnaireController {
         if (!questionnaireDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
-
         questionnaireDAO.deleteQuestionnaire(id);
     }
 
