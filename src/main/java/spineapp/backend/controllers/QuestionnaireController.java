@@ -34,13 +34,9 @@ public class QuestionnaireController {
         }
         return questionnaire;
     }
-    @GetMapping
-    public List<Questionnaire> getQuestionnaire() {
-        return questionnaireDAO.getQuestionnaires();
-    }
 
     @GetMapping
-    public List<Questionnaire> getQuestionnaires(){
+    public List<Questionnaire> getQuestionnaires() {
         return questionnaireDAO.getQuestionnaires();
     }
 
