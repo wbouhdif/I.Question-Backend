@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -36,6 +37,10 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "type", referencedColumnName = "id", nullable = false)
     private AccountType type;
+
+    @OneToMany(cascade = CascadeType.DETACH, mappedBy = "account")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Questionnaire> questionnaires;
 
     /**
      * Constructs an empty account without parameters. These can be defined after creation.
