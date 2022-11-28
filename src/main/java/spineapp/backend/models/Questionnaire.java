@@ -1,9 +1,11 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +25,14 @@ public class Questionnaire {
     @ManyToOne
     @JoinColumn(name = "account", referencedColumnName = "id")
     private Account account;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionnaire")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<EmployedQuestion> employedQuestions;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionnaire")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<AnsweredQuestionnaire> answeredQuestionnaires;
 
     /**
      * Constructs an empty questionnaire without parameters. These can be defined after creation.
