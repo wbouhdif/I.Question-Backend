@@ -15,15 +15,24 @@ import java.util.Optional;
 @Component
 public class LoggedInUserDetailsService implements UserDetailsService {
 
-    @Autowired private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     /**
-     * Finds the user that is associated with the provided email address
-     * @param email email address of the user
+     * Constructs instance of LoggedInUserDetailsService with the accountRepository via dependency injection.
+     * @param accountRepository Parameter of type AccountRepository to be injected into.
+     */
+    @Autowired
+    public LoggedInUserDetailsService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
+    /**
+     * Finds the user that is associated with the provided email address.
+     * @param email Email address of the user.
      * @return
-     * returns the user associated with the provided emailaddress
+     * Returns the user associated with the provided email address.
      * @throws UsernameNotFoundException
-     * Throws an exception if the email address provided is not associated with any existing account in the database
+     * Throws an exception if the email address provided is not associated with any existing account in the database.
      */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
