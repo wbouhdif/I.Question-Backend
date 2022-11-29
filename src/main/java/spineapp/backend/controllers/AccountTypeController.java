@@ -1,11 +1,9 @@
 package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
-import spineapp.backend.daos.AccountTypeDAO;
 import org.springframework.web.bind.annotation.*;
+import spineapp.backend.daos.AccountTypeDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
-import spineapp.backend.models.Account;
 import spineapp.backend.models.AccountType;
 
 import java.util.List;
@@ -19,8 +17,8 @@ public class AccountTypeController {
     private final AccountTypeDAO accountTypeDAO;
 
     /**
-     * Constructor to create a new Account Type Controller for a given DAO
-     * @param accountTypeDAO A DAO of Account Type
+     * Constructs instance of AccountTypeController with the accountTypeDAO via dependency injection.
+     * @param accountTypeDAO Parameter of type AccountTypeDAO to be injected into.
      */
     @Autowired
     AccountTypeController(AccountTypeDAO accountTypeDAO) {
@@ -30,7 +28,7 @@ public class AccountTypeController {
     /**
      * Gathers a list of all the account types using the Account Type DAO's getAccountTypes() function.
      * @return
-     * returns a list of Account Types.
+     * Returns a list of Account Types.
      */
     @GetMapping
     public List<AccountType> getAccountTypes() {
@@ -38,12 +36,12 @@ public class AccountTypeController {
     }
 
     /**
-     * returns the specific Account Type belonging to the ID given as parameter
+     * Returns the specific Account Type belonging to the ID given as parameter
      * @param id ID of an Account Type
      * @throws EntityNotFoundException
      * Will throw exception if entity with given id could not be found.
      * @return
-     * returns the Account Type belonging to the given ID
+     * Returns the Account Type belonging to the given ID.
      */
     @GetMapping (path = "id={account_typeId}")
     public Optional<AccountType> getAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
@@ -54,6 +52,14 @@ public class AccountTypeController {
         return accountType;
     }
 
+    /**
+     * Finds account types in database with given name.
+     * @param name Name of account-type to be looked for.
+     * @return
+     * Returns all account-types with given name.
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given name could not be found.
+     */
     @GetMapping (path = "name={account_typeName}")
     public Optional<AccountType> getAccountTypeByName(@PathVariable("account_typeName") String name) throws EntityNotFoundException {
         Optional<AccountType> accountType = accountTypeDAO.getAccountTypeByName(name);
@@ -64,8 +70,8 @@ public class AccountTypeController {
     }
 
     /**
-     * Create a new Account Type
-     * @param accountType An account type given as a parameter for creating a new Account Type
+     * Create a new Account Type.
+     * @param accountType An account type given as a parameter for creating a new Account Type.
      */
     @PostMapping
     public void createAccountType(@RequestBody AccountType accountType) {
@@ -74,9 +80,9 @@ public class AccountTypeController {
 
     /**
      * Will attempt to delete the Account Type belonging to the given ID.
-     * @param id ID belonging to an Account Type
+     * @param id ID belonging to an account-type.
      * @throws EntityNotFoundException
-     * Will throw an expection if the Account Type belonging to the given ID does not exist.
+     * Will throw an exception if the account-type belonging to the given ID does not exist.
      */
     @DeleteMapping(path = "{account_typeId}")
     public void deleteAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
