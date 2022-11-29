@@ -142,9 +142,9 @@ public class AccountController {
      */
     @PutMapping(path = "/newpassword/{accountId}")
     public void newPassword (@PathVariable("accountId") UUID id, @RequestBody String email) {
-        String password = GeneratePassword.getInstance().generateNewPassword();
+        String password = GeneratePassword.generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);
-        SendEmailService.getInstance().SendNewPassword(email, password);
+        SendEmailService.sendNewPassword(email, password);
     }
 }
