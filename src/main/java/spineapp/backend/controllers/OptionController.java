@@ -31,14 +31,9 @@ public class OptionController {
     /**
      * Creates new entry in option table in the database.
      * @param option Object of type Option to be posted.
-     * @throws EntityNotFoundException
-     * Will throw exception if entity with given ID could not be found.
      */
     @PostMapping
-    public void createNewOption(@RequestBody Option option) throws EntityNotFoundException {
-        if (optionDAO.getOptionByText(option.getText()).isPresent()){
-            throw new EntityNotFoundException(option.getText());
-        }
+    public void createNewOption(@RequestBody Option option) {
         optionDAO.createOption(option);
     }
 
