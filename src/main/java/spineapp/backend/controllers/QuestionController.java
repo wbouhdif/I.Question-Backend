@@ -16,20 +16,34 @@ public class QuestionController {
 
     private final QuestionDAO questionDAO;
 
-
+    /**
+     * Constructs instance of QuestionController with the questionDAO via dependency injection.
+     * @param questionDAO Parameter of type QuestionDAO to be injected into.
+     */
     @Autowired
     public QuestionController(QuestionDAO questionDAO) {
         this.questionDAO = questionDAO;
     }
 
+    /**
+     * Creates new entry in the question table in the database.
+     * @param question Object of type question to be posted.
+     * @return
+     * Returns generated UUID of posted question.
+     */
     @PostMapping
-    public UUID createQuestion(@RequestBody Question question) throws EntityNotFoundException{
-        if (questionDAO.existsByText(question.getText())){
-            throw new EntityNotFoundException(question.getId());
-        }
+    public UUID createQuestion(@RequestBody Question question) {
         return questionDAO.createQuestion(question);
     }
 
+    /**
+     * Finds question in database with given id.
+     * @param id ID of question to be looked for.
+     * @return
+     * Returns question with given id.
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given ID could not be found.
+     */
     @GetMapping(path = "{questionId}")
     public Optional<Question> getQuestion(@PathVariable("questionId") UUID id) throws EntityNotFoundException {
         Optional<Question> question = questionDAO.getQuestionById(id);
@@ -39,6 +53,11 @@ public class QuestionController {
         return question;
     }
 
+    /**
+     * Finds all questions in the database.
+     * @return
+     * Returns list of all questions that were found in the database.
+     */
     @GetMapping
     public List<Question> getQuestions(){
         return questionDAO.getQuestions();
