@@ -1,9 +1,11 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,6 +29,11 @@ public class EmployedQuestion {
 
     @Column
     private int position;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employedQuestion")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Answer> answers;
+
 
     /**
      * Constructs an empty Employed question without parameters. These can be defined after creation

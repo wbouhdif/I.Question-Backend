@@ -17,17 +17,34 @@ public class EmployedQuestionController {
     private final EmployedQuestionDAO employedQuestionDAO;
     private final QuestionnaireDAO questionnaireDAO;
 
+    /**
+     * Constructs instance of EmployedQuestionController with the employedQuestionDAO and questionnaireDAO via dependency injection.
+     * @param employedQuestionDAO Parameter of type EmployedQuestionDAO to be injected into.
+     * @param questionnaireDAO Parameter of type QuestionnaireDAO to be injected into.
+     */
     @Autowired
     public EmployedQuestionController(EmployedQuestionDAO employedQuestionDAO, QuestionnaireDAO questionnaireDAO) {
         this.employedQuestionDAO = employedQuestionDAO;
         this.questionnaireDAO = questionnaireDAO;
     }
 
+    /**
+     * Creates new entry in employed_question table in the database.
+     * @param employedQuestion Object of type EmployedQuestion to be posted.
+     */
     @PostMapping
     public void createEmployedQuestion(@RequestBody EmployedQuestion employedQuestion) {
         employedQuestionDAO.createEmployedQuestion(employedQuestion);
     }
 
+    /**
+     * Finds all employed question with given questionnaire.
+     * @param questionnaire ID of questionnaire to be looked for.
+     * @return
+     * Returns all employed questions with given questionnaire.
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given ID could not be found.
+     */
     @GetMapping(path = "questionnaire={questionnaire}")
     public List<EmployedQuestion> getEmployedQuestionsByQuestionnaire(@PathVariable("questionnaire") UUID questionnaire) throws EntityNotFoundException {
         if (!questionnaireDAO.existsById(questionnaire)) {

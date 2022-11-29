@@ -9,5 +9,12 @@ import java.util.UUID;
 
 @Repository
 public interface AccountTypeRepository extends JpaRepository<AccountType, UUID> {
+
+    /**
+     * Finds account type in database with given name.
+     * @param name Name to be looked for.
+     * @return
+     * Returns account type with given name.
+     */
     Optional<AccountType> findByName(String name);
 }

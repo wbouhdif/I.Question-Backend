@@ -38,6 +38,7 @@ public class Answer {
      * Constructor for Answer
      * @param text Text for the answer
      * @param answeredQuestionnaire The answered questionnaire the answer belongs to
+     * @param employedQuestion The employed question the answer belongs to.
      */
     public Answer(String text, AnsweredQuestionnaire answeredQuestionnaire, EmployedQuestion employedQuestion) {
         this.text = text;

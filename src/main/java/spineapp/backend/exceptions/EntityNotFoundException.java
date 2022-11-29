@@ -12,6 +12,10 @@ public class EntityNotFoundException extends Exception {
         super("Entity with UUID " + id + " could not be found.");
     }
 
+    /**
+     * Constructs instance of EntityNotFoundException with message.
+     * @param name The name of entity in question.
+     */
     public EntityNotFoundException(String name) {
         super("Entity with name " + name + " could not be found.");
     }
