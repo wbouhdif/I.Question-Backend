@@ -15,8 +15,8 @@ public class AccountDAO {
     private final AccountRepository accountRepository;
 
     /**
-     * Constructs a new account DAO on a given Account Repository.
-     * @param accountRepository instance of an Account repository.
+     * Constructs instance of AccountDAO with the accountRepository via dependency injection.
+     * @param accountRepository Parameter of type AccountRepository to be injected into.
      */
     @Autowired
     public AccountDAO(AccountRepository accountRepository) {
@@ -25,7 +25,7 @@ public class AccountDAO {
 
     /**
      * Registers a given new Account in the account repository.
-     * @param account instance of an account that is to be registered.
+     * @param account Instance of an account that is to be registered.
      */
     public void registerNewAccount(Account account) {
 //        accountRepository.save(account);
@@ -33,37 +33,37 @@ public class AccountDAO {
     }
 
     /**
-     * Gathers list of all accounts within account repository
+     * Gathers list of all accounts within account repository.
      * @return
-     * returns a List of the type Account containing all accounts found in the repository.
+     * Returns a List of the type Account containing all accounts found in the repository.
      */
     public List<Account> getAccounts() {
         return accountRepository.findAll();
     }
 
     /**
-     * Finds single Account within account repository belonging to the provided ID
-     * @param id ID belonging to an account
+     * Finds single Account within account repository belonging to the provided ID.
+     * @param id ID belonging to an account.
      * @return
-     * returns the account object from the repository
+     * Returns the account object from the repository.
      */
     public Optional<Account> getAccountById(UUID id) {
         return accountRepository.findById(id);
     }
 
     /**
-     * Deletes the Account belonging to the provided ID from the account repository
-     * @param id ID belonging to an Account
+     * Deletes the Account belonging to the provided ID from the account repository.
+     * @param id ID belonging to an Account.
      */
     public void deleteAccount(UUID id) {
         accountRepository.deleteById(id);
     }
 
     /**
-     * Finds single Account within account repository belonging to the provided email address
+     * Finds single Account within account repository belonging to the provided email address.
      * @param email an email address
      * @return
-     * returns the account belonging to the given email address
+     * Returns the account belonging to the given email address
      */
     public Optional<Account> findAccountByEmail(String email) {
         return accountRepository.findAccountByEmail(email);
@@ -73,18 +73,28 @@ public class AccountDAO {
      * Finds out whether an account belonging to the given ID exists within the account repository
      * @param id ID belonging to an account
      * @return
-     * returns whether the account exists within the account repository
+     * Returns whether the account exists within the account repository
      */
     public boolean existsById(UUID id) {
         return accountRepository.existsById(id);
     }
 
+    /**
+     * Sets authorised attribute of account with given id to given value.
+     * @param accountId ID of account to be altered.
+     * @param authorised Value to set authorised to.
+     */
     @Transactional
     public void setAuthorised(UUID accountId, boolean authorised) {
         Optional<Account> account = accountRepository.findById(accountId);
-        account.get().setAuthorised(authorised);
+        account.ifPresent(value -> value.setAuthorised(authorised));
     }
 
+    /**
+     * Updates password attribute of account with given id to given encodedPassword
+     * @param id ID of account to be altered.
+     * @param encodedPassword Value to set password to.
+     */
     public void updatePassword(UUID id, String encodedPassword) {
         accountRepository.updatePassword(encodedPassword,id);
     }
