@@ -18,17 +18,35 @@ public class AnsweredQuestionnaireController {
     private final AnsweredQuestionnaireDAO answeredQuestionnaireDAO;
     private final QuestionnaireDAO questionnaireDAO;
 
+    /**
+     * Constructs instance of AnswerController with the questionnaireDAO and answeredQuestionnaireDAO via dependency injection.
+     * @param answeredQuestionnaireDAO Parameter of type AnsweredQuestionnaireDAO to be injected into.
+     * @param questionnaireDAO Parameter of type QuestionnaireDAO to be injected into.
+     */
     @Autowired
     public AnsweredQuestionnaireController(AnsweredQuestionnaireDAO answeredQuestionnaireDAO, QuestionnaireDAO questionnaireDAO) {
         this.answeredQuestionnaireDAO = answeredQuestionnaireDAO;
         this.questionnaireDAO = questionnaireDAO;
     }
 
+    /**
+     * Finds all answered questionnaires in database.
+     * @return
+     * Returns list of all answered questionnaires in database.
+     */
     @GetMapping
     public List<AnsweredQuestionnaire> getAnsweredQuestionnaires() {
         return answeredQuestionnaireDAO.getAnsweredQuestionnaires();
     }
 
+    /**
+     * Finds answered questionnaire with given id.
+     * @param id ID of answered questionnaire to be looked for.
+     * @return
+     * Returns answered questionnaire with given id.
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given ID could not be found.
+     */
     @GetMapping(path = "{answeredQuestionnaireId}")
     public Optional<AnsweredQuestionnaire> getAnsweredQuestionnaire(@PathVariable("answeredQuestionnaireId") UUID id) throws EntityNotFoundException {
         Optional<AnsweredQuestionnaire> answeredQuestionnaire = answeredQuestionnaireDAO.getAnsweredQuestionnaireById(id);
@@ -38,10 +56,25 @@ public class AnsweredQuestionnaireController {
         return answeredQuestionnaire;
     }
 
+    /**
+     * Creates answered questionnaire in database.
+     * @param answeredQuestionnaire Instance of type AnsweredQuestionnaire to be posted.
+     * @return
+     * Returns generated UUID of posted answered questionnaire.
+     */
     @PostMapping
     public UUID createAnsweredQuestionnaire(@RequestBody AnsweredQuestionnaire answeredQuestionnaire) {
         return answeredQuestionnaireDAO.createAnsweredQuestionnaire(answeredQuestionnaire);
     }
+
+    /**
+     * Finds all answered questionnaires with given questionnaire.
+     * @param id id of questionnaire to be looked for.
+     * @return
+     * Returns list of all answered questionnaires with given questionnaire.
+     * @throws EntityNotFoundException
+     * Will throw exception if entity with given ID could not be found.
+     */
     @GetMapping(path = "questionnaire={questionnaireId}")
     public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByQuestionnaire(@PathVariable("questionnaireId") UUID id) throws EntityNotFoundException {
         if (!questionnaireDAO.existsById(id)) {
