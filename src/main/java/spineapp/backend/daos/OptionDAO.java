@@ -5,31 +5,37 @@ import org.springframework.stereotype.Component;
 import spineapp.backend.models.Option;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Component
 public class OptionDAO {
 
     private final OptionRepository optionRepository;
+
+    /**
+     * Constructs instance of OptionDAO with the optionRepository via dependency injection.
+     * @param optionRepository Parameter of type OptionRepository to be injected into.
+     */
     @Autowired
     public OptionDAO(OptionRepository optionRepository) {
         this.optionRepository = optionRepository;
     }
 
+    /**
+     * Creates entry in option table in database.
+     * @param option Option to be posted.
+     */
     public void createOption(Option option){
         optionRepository.save(option);
     }
 
+    /**
+     * Finds all options in database with given question.
+     * @param question ID of question to be looked for.
+     * @return
+     * Returns list of all options with given question that were found.
+     */
     public List<Option> getOptionsByQuestion(UUID question) {
         return optionRepository.findAllByQuestion(question);
     }
-
-    public Optional<Option> getOptionByID(UUID id){
-        return optionRepository.findById(id);
-    }
-    public Optional<Option> getOptionByText(String text){
-        return optionRepository.findOptionByText(text);
-    }
-
 }
