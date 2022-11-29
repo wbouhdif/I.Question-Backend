@@ -7,7 +7,12 @@ import java.util.Properties;
 
 public class SendEmailService {
 
-    public void SendNewPassword(String email, String newPassword) {
+    /**
+     * Sends a given new password to a given email.
+     * @param email Email where the new password will be sent to.
+     * @param newPassword Password that will be sent.
+     */
+    public static void sendNewPassword(String email, String newPassword) {
         final String email_username = "noreply.spine.ngo@gmail.com";
         final String email_password = "rbuxgkumcuqvzwfp";
 
@@ -38,14 +43,5 @@ public class SendEmailService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-    }
-
-
-    private static SendEmailService instance;
-    public static SendEmailService getInstance() {
-        if (instance == null) {
-            instance = new SendEmailService();
-        }
-        return instance;
     }
 }
