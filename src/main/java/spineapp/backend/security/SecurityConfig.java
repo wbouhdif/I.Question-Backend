@@ -8,21 +8,33 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import spineapp.backend.services.LoggedInUserDetailsService;
+
 import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired private JWTFilter filter;
-    @Autowired private LoggedInUserDetailsService uds;
+
+    private final JWTFilter filter;
+    private final LoggedInUserDetailsService uds;
+
+    /**
+     * Constructs instance of JWTFilter with the loggedInUserDetailsService and jwtFilter via dependency injection.
+     * @param filter Parameter of type JWTFilter to be injected into.
+     * @param uds Parameter of type LoggedInUserDetailsService to be injected into.
+     */
+    @Autowired
+    public SecurityConfig(JWTFilter filter, LoggedInUserDetailsService uds) {
+        this.filter = filter;
+        this.uds = uds;
+    }
 
     /**
      * Configures the security of the http session of the user.
@@ -67,7 +79,7 @@ public class SecurityConfig {
     }
 
     /**
-     * Created a bean for the authenticationManager. This lets Spring Boot handle the creation and management of the authenticationManager.
+     * Creates a bean for the authenticationManager. This lets Spring Boot handle the creation and management of the authenticationManager.
      * @return
      * Returns an authenticationManagerBean.
      * @throws Exception
