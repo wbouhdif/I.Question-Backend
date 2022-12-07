@@ -8,6 +8,7 @@ import spineapp.backend.daos.AccountDAO;
 import spineapp.backend.daos.AccountTypeDAO;
 import spineapp.backend.exceptions.EmailTakenException;
 import spineapp.backend.exceptions.EntityNotFoundException;
+import spineapp.backend.exceptions.IllegalRegistrationException;
 import spineapp.backend.models.Account;
 import spineapp.backend.services.GeneratePassword;
 import spineapp.backend.services.SendEmailService;
@@ -89,14 +90,22 @@ public class AccountController {
      * Will throw an exception if the account-type of the given ID does not exist.
      */
     @PostMapping(path = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException {
+    public void registerNewAccount(@RequestBody Account account) throws EmailTakenException, EntityNotFoundException, IllegalRegistrationException {
 
         if (accountDAO.findAccountByEmail(account.getEmail()).isPresent()) {
             throw new EmailTakenException();
         }
 
-        if (!accountTypeDAO.existsById(account.getType().getId())) {
+        else if (!accountTypeDAO.existsById(account.getType().getId())) {
             throw new EntityNotFoundException(account.getType().getId());
+        }
+
+        else if (account.getAuthorised()) {
+            throw new IllegalRegistrationException(account.getAuthorised());
+        }
+
+        else if (account.getType().getId().equals(accountTypeDAO.getAccountTypeByName("Admin").get().getId())) {
+            throw new IllegalRegistrationException(accountTypeDAO.getAccountTypeById(account.getType().getId()));
         }
 
         String encodedPassword = passwordEncoder.encode(account.getPassword());
