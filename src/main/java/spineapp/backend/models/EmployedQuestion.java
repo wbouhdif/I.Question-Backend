@@ -27,8 +27,11 @@ public class EmployedQuestion {
     @JoinColumn(name = "questionnaire", referencedColumnName = "id", nullable = false)
     private Questionnaire questionnaire;
 
-    @Column
+    @Column(nullable = false)
     private int position;
+
+    @Column(nullable = false)
+    private Boolean mandatory;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employedQuestion")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -45,11 +48,13 @@ public class EmployedQuestion {
      * @param question The question that needs to be added
      * @param questionnaire the questionnaire it needs to be added to
      * @param position the position within the questionnaire where the question will be.
+     * @param mandatory A check to see whether the question needs to be answered or if it can be skipped
      */
-    public EmployedQuestion(Question question, Questionnaire questionnaire, int position) {
+    public EmployedQuestion(Question question, Questionnaire questionnaire, int position, boolean mandatory) {
         this.question = question;
         this.questionnaire = questionnaire;
         this.position = position;
+        this.mandatory = mandatory;
     }
 
 }
