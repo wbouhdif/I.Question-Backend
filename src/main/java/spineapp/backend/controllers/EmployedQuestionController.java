@@ -53,4 +53,11 @@ public class EmployedQuestionController {
         return employedQuestionDAO.getEmployedQuestionsByQuestionnaire(questionnaire);
     }
 
+    @DeleteMapping(path = "{employedQuestionId}")
+    public void deleteEmployedQuestion(@PathVariable("employedQuestionId") UUID id) throws EntityNotFoundException {
+        if (!employedQuestionDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+        employedQuestionDAO.deleteEmployedQuestion(id);
+    }
 }
