@@ -49,4 +49,9 @@ public class EmployedQuestionDAO {
         return employedQuestionRepository.existsById(id);
     }
 
+    public void deleteEmployedQuestion(UUID id) {
+        employedQuestionRepository.deleteById(id);
+    }
+
+
 }
