@@ -64,4 +64,8 @@ public class QuestionDAO {
         return questionRepository.existsById(id);
     }
 
+    public void deleteQuestion(UUID id) {
+        this.questionRepository.deleteById(id);
+    }
+
 }
