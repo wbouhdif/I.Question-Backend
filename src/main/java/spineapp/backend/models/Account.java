@@ -3,8 +3,10 @@ package spineapp.backend.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +36,12 @@ public class Account {
     @Column(nullable = false)
     private Boolean authorised;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_created")
+    private Date dateCreated;
+
+
     @ManyToOne
     @JoinColumn(name = "type", referencedColumnName = "id", nullable = false)
     private AccountType type;
@@ -45,7 +53,9 @@ public class Account {
     /**
      * Constructs an empty account without parameters. These can be defined after creation.
      */
-    public Account() {}
+    public Account() {
+
+    }
 
     /**
      * Constructs an Account object

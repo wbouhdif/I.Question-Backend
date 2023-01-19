@@ -2,8 +2,10 @@ package spineapp.backend.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +24,11 @@ public class Question {
 
     @Column(nullable = false)
     private String text;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_created")
+    private Date dateCreated;
 
     /**
      * Constructs an empty Question without parameters. These can be defined after creation.

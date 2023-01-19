@@ -3,8 +3,10 @@ package spineapp.backend.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +23,11 @@ public class Questionnaire {
 
     @Column(nullable = false)
     private String name;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_created")
+    private Date dateCreated;
 
     @ManyToOne
     @JoinColumn(name = "account", referencedColumnName = "id")
