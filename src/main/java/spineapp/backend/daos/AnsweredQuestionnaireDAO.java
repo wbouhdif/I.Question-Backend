@@ -74,4 +74,8 @@ public class AnsweredQuestionnaireDAO {
         return answeredQuestionnaireRepository.getAnsweredQuestionnairesByQuestionnaire(questionnaireId);
     }
 
+    public void deleteAnsweredQuestionnaire(UUID id) {
+        this.answeredQuestionnaireRepository.deleteById(id);
+    }
+
 }

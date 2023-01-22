@@ -83,5 +83,14 @@ public class AnsweredQuestionnaireController {
         return answeredQuestionnaireDAO.getAnsweredQuestionnairesByQuestionnaire(id);
     }
 
+    @DeleteMapping(path = "{answeredQuestionnaireId}")
+    public void deleteAnsweredQuestionnaire(@PathVariable("answeredQuestionnaireId") UUID id) throws EntityNotFoundException {
+        if (!answeredQuestionnaireDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+        this.answeredQuestionnaireDAO.deleteAnsweredQuestionnaire(id);
+    }
+
+
 
 }
