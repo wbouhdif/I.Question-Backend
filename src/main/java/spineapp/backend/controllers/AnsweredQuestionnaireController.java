@@ -2,6 +2,7 @@ package spineapp.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import spineapp.backend.daos.AccountDAO;
 import spineapp.backend.daos.AnsweredQuestionnaireDAO;
 import spineapp.backend.daos.QuestionnaireDAO;
 import spineapp.backend.exceptions.EntityNotFoundException;
@@ -17,6 +18,7 @@ public class AnsweredQuestionnaireController {
 
     private final AnsweredQuestionnaireDAO answeredQuestionnaireDAO;
     private final QuestionnaireDAO questionnaireDAO;
+    private final AccountDAO accountDAO;
 
     /**
      * Constructs instance of AnswerController with the questionnaireDAO and answeredQuestionnaireDAO via dependency injection.
@@ -24,9 +26,10 @@ public class AnsweredQuestionnaireController {
      * @param questionnaireDAO Parameter of type QuestionnaireDAO to be injected into.
      */
     @Autowired
-    public AnsweredQuestionnaireController(AnsweredQuestionnaireDAO answeredQuestionnaireDAO, QuestionnaireDAO questionnaireDAO) {
+    public AnsweredQuestionnaireController(AnsweredQuestionnaireDAO answeredQuestionnaireDAO, QuestionnaireDAO questionnaireDAO, AccountDAO accountDAO) {
         this.answeredQuestionnaireDAO = answeredQuestionnaireDAO;
         this.questionnaireDAO = questionnaireDAO;
+        this.accountDAO = accountDAO;
     }
 
     /**
@@ -81,6 +84,14 @@ public class AnsweredQuestionnaireController {
             throw new EntityNotFoundException(id);
         }
         return answeredQuestionnaireDAO.getAnsweredQuestionnairesByQuestionnaire(id);
+    }
+
+    @GetMapping(path = "account={accountId}")
+    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByAccount(@PathVariable("accountId") UUID id) throws EntityNotFoundException {
+        if (!accountDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+        return answeredQuestionnaireDAO.getAnsweredQuestionnairesByAccount(id);
     }
 
     @DeleteMapping(path = "{answeredQuestionnaireId}")

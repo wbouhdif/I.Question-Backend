@@ -19,4 +19,7 @@ public interface AnsweredQuestionnaireRepository extends JpaRepository<AnsweredQ
      */
     @Query("SELECT a FROM AnsweredQuestionnaire a WHERE a.questionnaire.id = ?1")
     List<AnsweredQuestionnaire> getAnsweredQuestionnairesByQuestionnaire(UUID questionnaireId);
+
+    @Query("SELECT a FROM AnsweredQuestionnaire a WHERE a.caregiver.id = ?1")
+    List<AnsweredQuestionnaire> getAnsweredQuestionnairesByAccount(UUID accountId);
 }

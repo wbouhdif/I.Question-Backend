@@ -74,6 +74,10 @@ public class AnsweredQuestionnaireDAO {
         return answeredQuestionnaireRepository.getAnsweredQuestionnairesByQuestionnaire(questionnaireId);
     }
 
+    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByAccount(UUID accountId) {
+        return answeredQuestionnaireRepository.getAnsweredQuestionnairesByAccount(accountId);
+    }
+
     public void deleteAnsweredQuestionnaire(UUID id) {
         this.answeredQuestionnaireRepository.deleteById(id);
     }

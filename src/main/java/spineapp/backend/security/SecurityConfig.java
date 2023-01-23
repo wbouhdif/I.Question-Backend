@@ -3,7 +3,6 @@ package spineapp.backend.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -54,8 +53,8 @@ public class SecurityConfig {
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/newpassword/{accountId}").permitAll()
                 // ADMIN ACCOUNT TYPE ROUTES//
-                .antMatchers("/api/account/{accountId}/authorised").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/api/account/{accountId}").hasRole("ADMIN")
+//                .antMatchers("/api/account/{accountId}/authorised").hasRole("ADMIN")
+//                .antMatchers(HttpMethod.DELETE, "/api/account/{accountId}").hasRole("ADMIN")
                 .and()
                 .userDetailsService(uds)
                 .exceptionHandling()
