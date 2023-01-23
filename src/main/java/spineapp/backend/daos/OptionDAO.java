@@ -38,4 +38,12 @@ public class OptionDAO {
     public List<Option> getOptionsByQuestion(UUID question) {
         return optionRepository.findAllByQuestion(question);
     }
+
+    public boolean existsById(UUID id) {
+        return this.optionRepository.existsById(id);
+    }
+
+    public void deleteOption(UUID id) {
+        optionRepository.deleteById(id);
+    }
 }

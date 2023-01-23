@@ -53,4 +53,12 @@ public class OptionController {
         return optionDAO.getOptionsByQuestion(question);
     }
 
+    @DeleteMapping(path = "{optionId}")
+    public void deleteOption(@PathVariable("optionId") UUID id) throws EntityNotFoundException {
+        if (!optionDAO.existsById(id)) {
+            throw new EntityNotFoundException(id);
+        }
+        optionDAO.deleteOption(id);
+    }
+
 }
