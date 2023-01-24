@@ -50,8 +50,8 @@ public class AnsweredQuestionnaireController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given ID could not be found.
      */
-    @GetMapping(path = "{answeredQuestionnaireId}")
-    public Optional<AnsweredQuestionnaire> getAnsweredQuestionnaire(@PathVariable("answeredQuestionnaireId") UUID id) throws EntityNotFoundException {
+    @GetMapping(path = "{id}")
+    public Optional<AnsweredQuestionnaire> getAnsweredQuestionnaire(@PathVariable("id") UUID id) throws EntityNotFoundException {
         Optional<AnsweredQuestionnaire> answeredQuestionnaire = answeredQuestionnaireDAO.getAnsweredQuestionnaireById(id);
         if (answeredQuestionnaire.isEmpty()) {
             throw new EntityNotFoundException(id);
@@ -78,24 +78,24 @@ public class AnsweredQuestionnaireController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given ID could not be found.
      */
-    @GetMapping(path = "questionnaire={questionnaireId}")
-    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByQuestionnaire(@PathVariable("questionnaireId") UUID id) throws EntityNotFoundException {
+    @GetMapping(path = "questionnaire={id}")
+    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByQuestionnaire(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!questionnaireDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
         return answeredQuestionnaireDAO.getAnsweredQuestionnairesByQuestionnaire(id);
     }
 
-    @GetMapping(path = "account={accountId}")
-    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByAccount(@PathVariable("accountId") UUID id) throws EntityNotFoundException {
+    @GetMapping(path = "account={id}")
+    public List<AnsweredQuestionnaire> getAnsweredQuestionnairesByAccount(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!accountDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
         return answeredQuestionnaireDAO.getAnsweredQuestionnairesByAccount(id);
     }
 
-    @DeleteMapping(path = "{answeredQuestionnaireId}")
-    public void deleteAnsweredQuestionnaire(@PathVariable("answeredQuestionnaireId") UUID id) throws EntityNotFoundException {
+    @DeleteMapping(path = "{id}")
+    public void deleteAnsweredQuestionnaire(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!answeredQuestionnaireDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }

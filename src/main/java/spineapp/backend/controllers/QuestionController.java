@@ -44,8 +44,8 @@ public class QuestionController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given ID could not be found.
      */
-    @GetMapping(path = "{questionId}")
-    public Optional<Question> getQuestion(@PathVariable("questionId") UUID id) throws EntityNotFoundException {
+    @GetMapping(path = "{id}")
+    public Optional<Question> getQuestion(@PathVariable("id") UUID id) throws EntityNotFoundException {
         Optional<Question> question = questionDAO.getQuestionById(id);
         if (question.isEmpty()) {
             throw new EntityNotFoundException(id);
@@ -63,8 +63,8 @@ public class QuestionController {
         return questionDAO.getQuestions();
     }
 
-    @DeleteMapping(path = "{questionId}")
-    public void deleteQuestion(@PathVariable("questionId") UUID id) throws EntityNotFoundException {
+    @DeleteMapping(path = "{id}")
+    public void deleteQuestion(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!questionDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }

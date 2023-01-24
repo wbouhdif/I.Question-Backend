@@ -55,8 +55,8 @@ public class AccountController {
      * @return
      * Returns the account which corresponds with the given ID parameter.
      */
-    @GetMapping (path = "{accountId}")
-    public Optional<Account> getAccount(@PathVariable("accountId") UUID id) throws EntityNotFoundException {
+    @GetMapping (path = "{id}")
+    public Optional<Account> getAccount(@PathVariable("id") UUID id) throws EntityNotFoundException {
         Optional<Account> account = accountDAO.getAccountById(id);
         if (account.isEmpty()) {
             throw new EntityNotFoundException(id);
@@ -121,8 +121,8 @@ public class AccountController {
      * @throws EntityNotFoundException
      * Will throw an exception if the account with given ID does not exist.
      */
-    @PutMapping(path = "{accountId}/authorised")
-    public void setAuthorised(@PathVariable("accountId") UUID id, @RequestBody boolean authorised) throws EntityNotFoundException {
+    @PutMapping(path = "{id}/authorised")
+    public void setAuthorised(@PathVariable("id") UUID id, @RequestBody boolean authorised) throws EntityNotFoundException {
         if (!accountDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
@@ -136,8 +136,8 @@ public class AccountController {
      * @throws EntityNotFoundException
      * Will throw an exception if the account belonging to the given ID parameter does not exist.
      */
-    @DeleteMapping(path = "{accountId}")
-    public void deleteAccount(@PathVariable("accountId") UUID id) throws EntityNotFoundException {
+    @DeleteMapping(path = "{id}")
+    public void deleteAccount(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!accountDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }
@@ -149,8 +149,8 @@ public class AccountController {
      * @param id ID of account to be altered.
      * @param email Email where the new password is to be sent to.
      */
-    @PutMapping(path = "/newpassword/{accountId}")
-    public void newPassword (@PathVariable("accountId") UUID id, @RequestBody String email) {
+    @PutMapping(path = "/newpassword/{id}")
+    public void newPassword (@PathVariable("id") UUID id, @RequestBody String email) {
         String password = GeneratePassword.generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);

@@ -43,8 +43,8 @@ public class AccountTypeController {
      * @return
      * Returns the Account Type belonging to the given ID.
      */
-    @GetMapping (path = "id={account_typeId}")
-    public Optional<AccountType> getAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
+    @GetMapping (path = "{id}")
+    public Optional<AccountType> getAccountType(@PathVariable("id") UUID id) throws EntityNotFoundException {
         Optional<AccountType> accountType = accountTypeDAO.getAccountTypeById(id);
         if (accountType.isEmpty()) {
             throw new EntityNotFoundException(id);
@@ -60,8 +60,8 @@ public class AccountTypeController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given name could not be found.
      */
-    @GetMapping (path = "name={account_typeName}")
-    public Optional<AccountType> getAccountTypeByName(@PathVariable("account_typeName") String name) throws EntityNotFoundException {
+    @GetMapping (path = "name={name}")
+    public Optional<AccountType> getAccountTypeByName(@PathVariable("name") String name) throws EntityNotFoundException {
         Optional<AccountType> accountType = accountTypeDAO.getAccountTypeByName(name);
         if (accountType.isEmpty()) {
             throw new EntityNotFoundException(name);
@@ -84,8 +84,8 @@ public class AccountTypeController {
      * @throws EntityNotFoundException
      * Will throw an exception if the account-type belonging to the given ID does not exist.
      */
-    @DeleteMapping(path = "{account_typeId}")
-    public void deleteAccountType(@PathVariable("account_typeId") UUID id) throws EntityNotFoundException {
+    @DeleteMapping(path = "{id}")
+    public void deleteAccountType(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!accountTypeDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }

@@ -45,16 +45,16 @@ public class OptionController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given ID could not be found.
      */
-    @GetMapping(path = "question={question}")
-    public List<Option> getOptionsByQuestion(@PathVariable("question") UUID question) throws EntityNotFoundException {
+    @GetMapping(path = "question={id}")
+    public List<Option> getOptionsByQuestion(@PathVariable("id") UUID question) throws EntityNotFoundException {
         if (!questionDAO.existsById(question)) {
             throw new EntityNotFoundException(question);
         }
         return optionDAO.getOptionsByQuestion(question);
     }
 
-    @DeleteMapping(path = "{optionId}")
-    public void deleteOption(@PathVariable("optionId") UUID id) throws EntityNotFoundException {
+    @DeleteMapping(path = "{id}")
+    public void deleteOption(@PathVariable("id") UUID id) throws EntityNotFoundException {
         if (!optionDAO.existsById(id)) {
             throw new EntityNotFoundException(id);
         }

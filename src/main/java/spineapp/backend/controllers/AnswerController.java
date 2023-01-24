@@ -49,8 +49,8 @@ public class AnswerController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given name could not be found.
      */
-    @GetMapping(path = "answered_questionnaire={answered_questionnaire}")
-    public List<Answer> getAnswersByAnsweredQuestionnaire(@PathVariable("answered_questionnaire") UUID answeredQuestionnaire) throws EntityNotFoundException {
+    @GetMapping(path = "answered_questionnaire={id}")
+    public List<Answer> getAnswersByAnsweredQuestionnaire(@PathVariable("id") UUID answeredQuestionnaire) throws EntityNotFoundException {
         if (!answeredQuestionnaireDAO.existsById(answeredQuestionnaire)) {
             throw new EntityNotFoundException(answeredQuestionnaire);
         }
@@ -65,8 +65,8 @@ public class AnswerController {
      * @throws EntityNotFoundException
      * Will throw exception if entity with given name could not be found.
      */
-    @GetMapping(path = "employed_question={employed_question}")
-    public List<Answer> getAnswersByEmployedQuestion(@PathVariable("employed_question") UUID employedQuestion) throws EntityNotFoundException {
+    @GetMapping(path = "employed_question={id}")
+    public List<Answer> getAnswersByEmployedQuestion(@PathVariable("id") UUID employedQuestion) throws EntityNotFoundException {
         if (!employedQuestionDAO.existsById(employedQuestion)) {
             throw new EntityNotFoundException(employedQuestion);
         }
