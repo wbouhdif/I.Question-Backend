@@ -72,7 +72,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.GET,"/api/option/question={id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
                 .antMatchers(HttpMethod.GET,"/api/question/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
                 .antMatchers(HttpMethod.GET,"/api/questionnaire/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
-
+                .antMatchers("/api/answer/employed_question={id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
 
                 // SPINE AND ADMIN ACCOUNT TYPE ROUTES //
                 .antMatchers("/api/employed_question/{id}").hasAnyRole("ADMIN", "SPINE")
@@ -83,7 +83,9 @@ public class SecurityConfig {
                 .antMatchers("/api/questionnaire/**").hasAnyRole("ADMIN", "SPINE")
 
                 // CAREGIVER TYPE ROUTES
-                .antMatchers("/api/answer/**").hasRole("CAREGIVER")
+                .antMatchers(HttpMethod.POST,"/api/answer/**").hasRole("CAREGIVER")
+                .antMatchers("/api/answer/answered_questionnaire={id}").hasRole("CAREGIVER")
+
 
 
                 .and()
