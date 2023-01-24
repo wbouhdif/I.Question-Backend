@@ -3,6 +3,7 @@ package spineapp.backend.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -51,10 +52,40 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 // ALL ALLOWED ENDPOINTS FOR ALL USERS (AUTHENTICATED AND UNAUTHENTICATED)//
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/newpassword/{accountId}").permitAll()
-                // ADMIN ACCOUNT TYPE ROUTES//
-//                .antMatchers("/api/account/{accountId}/authorised").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/api/account/{accountId}").hasRole("ADMIN")
+                .antMatchers("/newpassword/{id}").permitAll()
+                .antMatchers("/api/account/register").permitAll()
+
+                // ADMIN ACCOUNT TYPE ROUTES //
+                .antMatchers("/api/account").hasRole("ADMIN")
+                .antMatchers("/api/account/{id}/authorised").hasRole("ADMIN")
+                .antMatchers("/api/account/email={email}").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/account_type/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/account_type/**").hasRole("ADMIN")
+
+                // SPINE, ADMIN AND CAREGIVER ACCOUNT TYPE ROUTES //
+                .antMatchers("/api/account/{id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/account_type/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers("/api/account_type/name={name}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/account_type").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers("/api/answered_questionnaire/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers("/api/employed_question/questionnaire={id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/option/question={id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/question/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/questionnaire/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+
+
+                // SPINE AND ADMIN ACCOUNT TYPE ROUTES //
+                .antMatchers("/api/employed_question/{id}").hasAnyRole("ADMIN", "SPINE")
+                .antMatchers("/api/employed_question").hasAnyRole("ADMIN", "SPINE")
+                .antMatchers(HttpMethod.POST, "/api/option").hasAnyRole("ADMIN", "SPINE")
+                .antMatchers(HttpMethod.DELETE,"/api/option/{id}").hasAnyRole("ADMIN", "SPINE")
+                .antMatchers("/api/question/**").hasAnyRole("ADMIN", "SPINE")
+                .antMatchers("/api/questionnaire/**").hasAnyRole("ADMIN", "SPINE")
+
+                // CAREGIVER TYPE ROUTES
+                .antMatchers("/api/answer/**").hasRole("CAREGIVER")
+
+
                 .and()
                 .userDetailsService(uds)
                 .exceptionHandling()
