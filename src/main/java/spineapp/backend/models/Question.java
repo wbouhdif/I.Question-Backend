@@ -1,11 +1,13 @@
 package spineapp.backend.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,6 +31,10 @@ public class Question {
     @Temporal(TemporalType.DATE)
     @Column(name = "date_created")
     private Date dateCreated;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<Option> options;
 
     /**
      * Constructs an empty Question without parameters. These can be defined after creation.
