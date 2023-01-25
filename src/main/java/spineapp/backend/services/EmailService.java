@@ -22,6 +22,17 @@ public class EmailService {
         sendEmail(email, subject, text);
     }
 
+    public static void sendAuthorisationInformation(String email, Boolean isAuthorised){
+        String subject = "Uw Account activatie status";
+        String text = "";
+        if (isAuthorised) {
+            text = "Uw account is geautoriseerd";
+        }else{
+            text = "Uw account is niet langer geautoriseerd";
+        }
+        sendEmail(email, subject, text);
+    }
+
     private static void sendEmail(String recipientEmail, String messageSubject, String messageText) {
         Properties properties = createProperties();
         Session session = createSession(properties, email, password);

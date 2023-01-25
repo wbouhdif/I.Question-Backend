@@ -156,4 +156,9 @@ public class AccountController {
         accountDAO.updatePassword(id, encodedPassword);
         EmailService.sendNewPassword(email, password);
     }
+
+    @PutMapping(path = "/authorisationEmail")
+    public void authorisationEmail(@RequestBody String email, @RequestBody Boolean authorised){
+        EmailService.sendAuthorisationInformation(email, authorised);
+    }
 }
