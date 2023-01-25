@@ -54,6 +54,7 @@ public class SecurityConfig {
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/newpassword/{id}").permitAll()
                 .antMatchers("/api/account/register").permitAll()
+                .antMatchers("/api/account_type/name={name}").permitAll()
 
                 // ADMIN ACCOUNT TYPE ROUTES //
                 .antMatchers("/api/account").hasRole("ADMIN")
