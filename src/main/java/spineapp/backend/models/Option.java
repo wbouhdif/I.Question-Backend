@@ -20,6 +20,9 @@ public class Option {
     @Column(nullable = false)
     private String text;
 
+    @Column(nullable = false)
+    private int position;
+
     @ManyToOne
     @JoinColumn(name = "question", referencedColumnName = "id", nullable = false)
     private Question question;
