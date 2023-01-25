@@ -11,7 +11,7 @@ import spineapp.backend.exceptions.EntityNotFoundException;
 import spineapp.backend.exceptions.IllegalRegistrationException;
 import spineapp.backend.models.Account;
 import spineapp.backend.services.GeneratePassword;
-import spineapp.backend.services.SendEmailService;
+import spineapp.backend.services.EmailService;
 
 import java.util.List;
 import java.util.Optional;
@@ -154,6 +154,6 @@ public class AccountController {
         String password = GeneratePassword.generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);
-        SendEmailService.sendNewPassword(email, password);
+        EmailService.sendNewPassword(email, password);
     }
 }
