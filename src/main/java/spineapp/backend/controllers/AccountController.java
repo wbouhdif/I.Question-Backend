@@ -146,11 +146,17 @@ public class AccountController {
 
     /**
      * Sets password of account with given id to a randomly generated password.
-     * @param id ID of account to be altered.
      * @param email Email where the new password is to be sent to.
      */
-    @PutMapping(path = "/newpassword/{id}")
-    public void newPassword (@PathVariable("id") UUID id, @RequestBody String email) {
+    @GetMapping(path = "/new_password/{email}")
+    public void newPassword (@PathVariable("email") String email){
+        System.out.println("Trying to find account with email: " + email);
+        if (accountDAO.findAccountByEmail(email).isEmpty()) {
+            System.out.println("Email not found");
+            return;
+        }
+        System.out.println("Email found");
+        UUID id = accountDAO.findAccountByEmail(email).get().getId();
         String password = GeneratePassword.generateNewPassword();
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);

@@ -52,8 +52,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 // ALL ALLOWED ENDPOINTS FOR ALL USERS (AUTHENTICATED AND UNAUTHENTICATED)//
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/newpassword/{id}").permitAll()
                 .antMatchers("/api/account/register").permitAll()
+                .antMatchers("/api/account/new-password").permitAll()
 
                 // ADMIN ACCOUNT TYPE ROUTES //
                 .antMatchers("/api/account").hasRole("ADMIN")
