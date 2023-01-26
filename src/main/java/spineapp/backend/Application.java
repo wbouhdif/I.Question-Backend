@@ -8,13 +8,16 @@ import org.springframework.context.event.EventListener;
 import spineapp.backend.constants.AccountTypeConstants;
 import spineapp.backend.daos.AccountTypeDAO;
 import spineapp.backend.daos.AccountTypeRepository;
+import spineapp.backend.services.CreateAdminService;
+
+import java.io.IOException;
 
 
 @SpringBootApplication
 public class Application {
     private final AccountTypeRepository accountTypeRepository;
     private final AccountTypeDAO accountTypeDao;
-
+    private final CreateAdminService createAdminService;
 
     /**
      * Constructs new instance of Application with an accountTypeRepository and AccountTypeDao being instantiated via dependency injection.
@@ -22,9 +25,10 @@ public class Application {
      * @param accountTypeDao Instance of AccountTypeDAO.
      */
     @Autowired
-    public Application(AccountTypeRepository accountTypeRepository, AccountTypeDAO accountTypeDao) {
+    public Application(AccountTypeRepository accountTypeRepository, AccountTypeDAO accountTypeDao, CreateAdminService createAdminService) {
         this.accountTypeRepository = accountTypeRepository;
         this.accountTypeDao = accountTypeDao;
+        this.createAdminService = createAdminService;
     }
 
     /**
@@ -48,4 +52,14 @@ public class Application {
 
         }
     }
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void listenConsole() {
+        try {
+            createAdminService.listenTerminal();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
