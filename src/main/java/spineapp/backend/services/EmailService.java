@@ -26,7 +26,7 @@ public class EmailService {
         String subject = "Uw Account activatie status";
         String text = "";
         if (isAuthorised) {
-            text = "Uw account is geautoriseerd";
+            text = "Uw account is zojuist geautoriseerd";
         }else{
             text = "Uw account is niet langer geautoriseerd";
         }

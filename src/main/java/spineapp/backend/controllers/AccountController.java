@@ -163,8 +163,10 @@ public class AccountController {
         EmailService.sendNewPassword(email, password);
     }
 
-    @PutMapping(path = "/authorisationEmail")
-    public void authorisationEmail(@RequestBody String email, @RequestBody Boolean authorised){
+    @GetMapping(path = "/authorisationEmail/{emailAndAuthorised}")
+    public void authorisationEmail(@PathVariable("emailAndAuthorised") String emailAndAuthorised) {
+        boolean authorised = Boolean.parseBoolean(emailAndAuthorised.substring(emailAndAuthorised.indexOf(",") + 1));
+        String email = emailAndAuthorised.substring(0, emailAndAuthorised.indexOf(","));
         EmailService.sendAuthorisationInformation(email, authorised);
     }
 }
