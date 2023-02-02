@@ -65,7 +65,8 @@ public class SecurityConfig {
 
                 // SPINE, ADMIN AND CAREGIVER ACCOUNT TYPE ROUTES //
                 .antMatchers("/api/account/{id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
-                .antMatchers(HttpMethod.GET,"/api/account_type/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/account_type").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
+                .antMatchers(HttpMethod.GET,"/api/account_type/{id}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
                 .antMatchers("/api/account_type/name={name}").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
                 .antMatchers(HttpMethod.GET,"/api/account_type").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
                 .antMatchers("/api/answered_questionnaire/**").hasAnyRole("ADMIN", "SPINE", "CAREGIVER")
