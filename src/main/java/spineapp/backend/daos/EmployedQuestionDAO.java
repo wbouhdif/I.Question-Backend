@@ -2,6 +2,7 @@ package spineapp.backend.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import spineapp.backend.models.EmployedQuestion;
 
 import java.util.List;
@@ -25,8 +26,10 @@ public class EmployedQuestionDAO {
      * Creates entry in table employed_question in database.
      * @param employedQuestion Employed question to be posted.
      */
-    public void createEmployedQuestion(EmployedQuestion employedQuestion){
+    @Transactional
+    public UUID createEmployedQuestion(EmployedQuestion employedQuestion){
         employedQuestionRepository.save(employedQuestion);
+        return employedQuestion.getId();
     }
 
     /**

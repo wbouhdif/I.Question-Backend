@@ -33,8 +33,8 @@ public class EmployedQuestionController {
      * @param employedQuestion Object of type EmployedQuestion to be posted.
      */
     @PostMapping
-    public void createEmployedQuestion(@RequestBody EmployedQuestion employedQuestion) {
-        employedQuestionDAO.createEmployedQuestion(employedQuestion);
+    public UUID createEmployedQuestion(@RequestBody EmployedQuestion employedQuestion) {
+        return employedQuestionDAO.createEmployedQuestion(employedQuestion);
     }
 
     /**
