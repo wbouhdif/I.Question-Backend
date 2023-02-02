@@ -2,6 +2,7 @@ package spineapp.backend.daos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import spineapp.backend.models.Option;
 
 import java.util.List;
@@ -25,8 +26,10 @@ public class OptionDAO {
      * Creates entry in option table in database.
      * @param option Option to be posted.
      */
-    public void createOption(Option option){
+    @Transactional
+    public UUID createOption(Option option){
         optionRepository.save(option);
+        return option.getId();
     }
 
     /**

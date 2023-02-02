@@ -33,8 +33,8 @@ public class OptionController {
      * @param option Object of type Option to be posted.
      */
     @PostMapping
-    public void createNewOption(@RequestBody Option option) {
-        optionDAO.createOption(option);
+    public UUID createOption(@RequestBody Option option) {
+        return optionDAO.createOption(option);
     }
 
     /**
