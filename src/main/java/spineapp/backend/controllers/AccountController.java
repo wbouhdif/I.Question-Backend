@@ -127,6 +127,7 @@ public class AccountController {
             throw new EntityNotFoundException(id);
         }
 
+        EmailService.sendAuthorisationInformation(accountDAO.getAccountById(id).get().getEmail(), authorised);
         accountDAO.setAuthorised(id, authorised);
     }
 
@@ -161,12 +162,5 @@ public class AccountController {
         String encodedPassword = passwordEncoder.encode(password);
         accountDAO.updatePassword(id, encodedPassword);
         EmailService.sendNewPassword(email, password);
-    }
-
-    @GetMapping(path = "/authorisationEmail/{emailAndAuthorised}")
-    public void authorisationEmail(@PathVariable("emailAndAuthorised") String emailAndAuthorised) {
-        boolean authorised = Boolean.parseBoolean(emailAndAuthorised.substring(emailAndAuthorised.indexOf(",") + 1));
-        String email = emailAndAuthorised.substring(0, emailAndAuthorised.indexOf(","));
-        EmailService.sendAuthorisationInformation(email, authorised);
     }
 }
