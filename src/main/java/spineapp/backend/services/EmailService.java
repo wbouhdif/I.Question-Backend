@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class EmailService {
 
-    private static final String email = "noreply.spine.ngo@gmail.com";
-    private static final String password = "rbuxgkumcuqvzwfp";
+    private static final String email = "";
+    private static final String password = "";
 
     /**
      * Sends a given new password to a given email.
